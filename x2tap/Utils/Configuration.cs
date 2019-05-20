@@ -10,7 +10,7 @@ namespace x2tap.Utils
 	/// <summary>
 	///		配置处理类
 	/// </summary>
-	public static class Config
+	public static class Configuration
 	{
 		/// <summary>
 		///		初始化配置
@@ -29,7 +29,7 @@ namespace x2tap.Utils
 		public static void Save()
 		{
 			// 写入服务器配置信息
-			Utils.Log.Info("正在写入服务器配置信息");
+			Utils.Logging.Info("正在写入服务器配置信息");
 			File.WriteAllText("Data\\Servers.json", Newtonsoft.Json.JsonConvert.SerializeObject(Global.Servers));
 		}
 	}

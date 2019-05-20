@@ -36,7 +36,7 @@ namespace x2tap.Objects
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return String.Format("[{0}] {1}", IsInternal ? Utils.i18N.Translate("Internal") : Utils.i18N.Translate("External"), Name);
+			return String.Format("[{0}] {1}", IsInternal ? Utils.MultiLanguage.Translate("Internal") : Utils.MultiLanguage.Translate("External"), Name);
 		}
 	}
 }

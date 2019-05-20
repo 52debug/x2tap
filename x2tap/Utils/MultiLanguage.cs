@@ -8,7 +8,7 @@ namespace x2tap.Utils
 	/// <summary>
 	///		多语言处理类
 	/// </summary>
-	public static class i18N
+	public static class MultiLanguage
 	{
 		/// <summary>
 		///		将文本翻译成系统语言对应的

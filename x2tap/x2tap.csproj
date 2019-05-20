@@ -157,10 +157,10 @@
     <Compile Include="Override\WebClient.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Utils\Config.cs" />
-    <Compile Include="Utils\i18N.cs" />
+    <Compile Include="Utils\Configuration.cs" />
+    <Compile Include="Utils\MultiLanguage.cs" />
     <Compile Include="Utils\GeoIP.cs" />
-    <Compile Include="Utils\Log.cs" />
+    <Compile Include="Utils\Logging.cs" />
     <Compile Include="x2tap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\MainForm.resx">

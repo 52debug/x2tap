@@ -10,7 +10,7 @@ namespace x2tap.Utils
 	/// <summary>
 	///		日志处理类
 	/// </summary>
-	public static class Log
+	public static class Logging
 	{
 		/// <summary>
 		///		信息
