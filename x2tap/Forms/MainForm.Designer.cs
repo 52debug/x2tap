@@ -49,6 +49,7 @@
 			this.EditPictureBox = new System.Windows.Forms.PictureBox();
 			this.ModeComboBox = new System.Windows.Forms.ComboBox();
 			this.ModeLabel = new System.Windows.Forms.Label();
+			this.ServerComboBox = new System.Windows.Forms.ComboBox();
 			this.ServerLabel = new System.Windows.Forms.Label();
 			this.StatusStrip = new System.Windows.Forms.StatusStrip();
 			this.UplinkLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -56,7 +57,6 @@
 			this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.ControlButton = new System.Windows.Forms.Button();
 			this.SettingsButton = new System.Windows.Forms.Button();
-			this.ServerComboBox = new System.Windows.Forms.ComboBox();
 			this.ToolStrip.SuspendLayout();
 			this.ConfigurationGroupBox.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SpeedPictureBox)).BeginInit();
@@ -184,8 +184,8 @@
 			this.VersionToolStripLabel.IsLink = true;
 			this.VersionToolStripLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
 			this.VersionToolStripLabel.Name = "VersionToolStripLabel";
-			this.VersionToolStripLabel.Size = new System.Drawing.Size(98, 22);
-			this.VersionToolStripLabel.Text = "0.30.0-TESTING";
+			this.VersionToolStripLabel.Size = new System.Drawing.Size(83, 22);
+			this.VersionToolStripLabel.Text = "1.0.0-STABLE";
 			this.VersionToolStripLabel.Click += new System.EventHandler(this.VersionToolStripLabel_Click);
 			// 
 			// ConfigurationGroupBox
@@ -258,6 +258,19 @@
 			this.ModeLabel.TabIndex = 2;
 			this.ModeLabel.Text = "Mode";
 			// 
+			// ServerComboBox
+			// 
+			this.ServerComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.ServerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ServerComboBox.FormattingEnabled = true;
+			this.ServerComboBox.IntegralHeight = false;
+			this.ServerComboBox.Location = new System.Drawing.Point(61, 18);
+			this.ServerComboBox.MaxDropDownItems = 30;
+			this.ServerComboBox.Name = "ServerComboBox";
+			this.ServerComboBox.Size = new System.Drawing.Size(467, 24);
+			this.ServerComboBox.TabIndex = 1;
+			this.ServerComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBox_DrawItem);
+			// 
 			// ServerLabel
 			// 
 			this.ServerLabel.AutoSize = true;
@@ -318,19 +331,6 @@
 			this.SettingsButton.Text = "Settings";
 			this.SettingsButton.UseVisualStyleBackColor = true;
 			this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
-			// 
-			// ServerComboBox
-			// 
-			this.ServerComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.ServerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.ServerComboBox.FormattingEnabled = true;
-			this.ServerComboBox.IntegralHeight = false;
-			this.ServerComboBox.Location = new System.Drawing.Point(61, 18);
-			this.ServerComboBox.MaxDropDownItems = 30;
-			this.ServerComboBox.Name = "ServerComboBox";
-			this.ServerComboBox.Size = new System.Drawing.Size(467, 24);
-			this.ServerComboBox.TabIndex = 1;
-			this.ServerComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBox_DrawItem);
 			// 
 			// MainForm
 			// 
