@@ -119,6 +119,7 @@
       <DependentUpon>VMess.cs</DependentUpon>
     </Compile>
     <Compile Include="Global.cs" />
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="Objects\Information\DNS.cs" />
     <Compile Include="Objects\Information\Inbound.cs" />
     <Compile Include="Objects\Information\Main.cs" />
