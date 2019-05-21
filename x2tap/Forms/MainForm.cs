@@ -102,11 +102,9 @@ namespace x2tap.Forms
 			Global.Servers.Add(new Objects.Server()
 			{
 				Remark = "N3RO 是最棒的！",
-				Type = "Shadowsocks",
+				Type = "Socks5",
 				Address = "www.baidu.com",
-				Port = 443,
-				Password = "ok, np",
-				EncryptMethod = "rc4-md5"
+				Port = 443
 			});
 
 			// 加载翻译
@@ -167,8 +165,8 @@ namespace x2tap.Forms
 			{
 				while (true)
 				{
-					// 必须在没有启动的情况下才能进行测延迟
-					if (State == Objects.State.Waiting || State == Objects.State.Stopped)
+					// 必须在没有启动和窗体显示的情况下才能进行测延迟
+					if ((State == Objects.State.Waiting || State == Objects.State.Stopped) && Visible)
 					{
 						Utils.Logging.Info("正在测试所有服务器延迟中");
 
@@ -215,26 +213,25 @@ namespace x2tap.Forms
 
 		private void AddSocks5ServerToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			new ServerForm("Socks5").Show();
+			new Server.Socks5().Show();
 			Hide();
 		}
 
 		private void AddShadowsocksServerToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			new ServerForm("Shadowsocks").Show();
+			new Server.Shadowsocks().Show();
 			Hide();
 		}
 
 		private void AddShadowsocksRServerToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			new ServerForm("ShadowsocksR").Show();
+			new Server.ShadowsocksR().Show();
 			Hide();
 		}
 
 		private void AddVMessServerToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			new ServerForm("VMess").Show();
-			Hide();
+
 		}
 
 		private void AddSubscribeLinkToolStripMenuItem_Click(object sender, EventArgs e)
@@ -280,7 +277,29 @@ namespace x2tap.Forms
 		{
 			if (ServerComboBox.SelectedIndex != -1)
 			{
-				new ServerForm(ServerComboBox.Items[ServerComboBox.SelectedIndex]).Show();
+				var item = Global.Servers[ServerComboBox.SelectedIndex];
+
+				if (item.Type == "Socks5")
+				{
+					new Server.Socks5(ServerComboBox.SelectedIndex).Show();
+				}
+				else if (item.Type == "Shadowsocks")
+				{
+					new Server.Shadowsocks(ServerComboBox.SelectedIndex).Show();
+				}
+				else if (item.Type == "ShadowsocksR")
+				{
+					new Server.ShadowsocksR(ServerComboBox.SelectedIndex).Show();
+				}
+				else if (item.Type == "VMess")
+				{
+					return;
+				}
+				else
+				{
+					return;
+				}
+
 				Hide();
 			}
 			else

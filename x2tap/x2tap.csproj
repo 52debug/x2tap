@@ -97,11 +97,29 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ServerForm.cs">
+    <Compile Include="Forms\Server\ShadowsocksR.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ServerForm.Designer.cs">
-      <DependentUpon>ServerForm.cs</DependentUpon>
+    <Compile Include="Forms\Server\ShadowsocksR.Designer.cs">
+      <DependentUpon>ShadowsocksR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Server\Shadowsocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Server\Shadowsocks.Designer.cs">
+      <DependentUpon>Shadowsocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Server\Socks5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Server\Socks5.Designer.cs">
+      <DependentUpon>Socks5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Server\VMess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Server\VMess.Designer.cs">
+      <DependentUpon>VMess.cs</DependentUpon>
     </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="Objects\Information\DNS.cs" />
@@ -126,8 +144,17 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ServerForm.resx">
-      <DependentUpon>ServerForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Server\ShadowsocksR.resx">
+      <DependentUpon>ShadowsocksR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Server\Shadowsocks.resx">
+      <DependentUpon>Shadowsocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Server\Socks5.resx">
+      <DependentUpon>Socks5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Server\VMess.resx">
+      <DependentUpon>VMess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -139,8 +166,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="App.config" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

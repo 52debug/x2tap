@@ -1,0 +1,200 @@
+﻿namespace x2tap.Forms.Server
+{
+	partial class Shadowsocks
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
+
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
+		#region Windows Form Designer generated code
+
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			this.ConfigurationGroupBox = new System.Windows.Forms.GroupBox();
+			this.PortTextBox = new System.Windows.Forms.TextBox();
+			this.AddressTextBox = new System.Windows.Forms.TextBox();
+			this.AddressLabel = new System.Windows.Forms.Label();
+			this.RemarkTextBox = new System.Windows.Forms.TextBox();
+			this.RemarkLabel = new System.Windows.Forms.Label();
+			this.PortLabel = new System.Windows.Forms.Label();
+			this.ControlButton = new System.Windows.Forms.Button();
+			this.PasswordTextBox = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.EncryptMethodComboBox = new System.Windows.Forms.ComboBox();
+			this.ConfigurationGroupBox.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// ConfigurationGroupBox
+			// 
+			this.ConfigurationGroupBox.Controls.Add(this.label2);
+			this.ConfigurationGroupBox.Controls.Add(this.EncryptMethodComboBox);
+			this.ConfigurationGroupBox.Controls.Add(this.PasswordTextBox);
+			this.ConfigurationGroupBox.Controls.Add(this.PortTextBox);
+			this.ConfigurationGroupBox.Controls.Add(this.AddressTextBox);
+			this.ConfigurationGroupBox.Controls.Add(this.AddressLabel);
+			this.ConfigurationGroupBox.Controls.Add(this.RemarkTextBox);
+			this.ConfigurationGroupBox.Controls.Add(this.RemarkLabel);
+			this.ConfigurationGroupBox.Controls.Add(this.PortLabel);
+			this.ConfigurationGroupBox.Controls.Add(this.label1);
+			this.ConfigurationGroupBox.Location = new System.Drawing.Point(12, 12);
+			this.ConfigurationGroupBox.Name = "ConfigurationGroupBox";
+			this.ConfigurationGroupBox.Size = new System.Drawing.Size(420, 139);
+			this.ConfigurationGroupBox.TabIndex = 2;
+			this.ConfigurationGroupBox.TabStop = false;
+			this.ConfigurationGroupBox.Text = "Configuration";
+			// 
+			// PortTextBox
+			// 
+			this.PortTextBox.Location = new System.Drawing.Point(360, 48);
+			this.PortTextBox.Name = "PortTextBox";
+			this.PortTextBox.Size = new System.Drawing.Size(54, 23);
+			this.PortTextBox.TabIndex = 5;
+			this.PortTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// AddressTextBox
+			// 
+			this.AddressTextBox.Location = new System.Drawing.Point(120, 48);
+			this.AddressTextBox.Name = "AddressTextBox";
+			this.AddressTextBox.Size = new System.Drawing.Size(234, 23);
+			this.AddressTextBox.TabIndex = 3;
+			this.AddressTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// AddressLabel
+			// 
+			this.AddressLabel.AutoSize = true;
+			this.AddressLabel.Location = new System.Drawing.Point(10, 51);
+			this.AddressLabel.Name = "AddressLabel";
+			this.AddressLabel.Size = new System.Drawing.Size(56, 17);
+			this.AddressLabel.TabIndex = 2;
+			this.AddressLabel.Text = "Address";
+			// 
+			// RemarkTextBox
+			// 
+			this.RemarkTextBox.Location = new System.Drawing.Point(120, 19);
+			this.RemarkTextBox.Name = "RemarkTextBox";
+			this.RemarkTextBox.Size = new System.Drawing.Size(294, 23);
+			this.RemarkTextBox.TabIndex = 1;
+			this.RemarkTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// RemarkLabel
+			// 
+			this.RemarkLabel.AutoSize = true;
+			this.RemarkLabel.Location = new System.Drawing.Point(10, 22);
+			this.RemarkLabel.Name = "RemarkLabel";
+			this.RemarkLabel.Size = new System.Drawing.Size(53, 17);
+			this.RemarkLabel.TabIndex = 0;
+			this.RemarkLabel.Text = "Remark";
+			// 
+			// PortLabel
+			// 
+			this.PortLabel.AutoSize = true;
+			this.PortLabel.Location = new System.Drawing.Point(353, 51);
+			this.PortLabel.Name = "PortLabel";
+			this.PortLabel.Size = new System.Drawing.Size(11, 17);
+			this.PortLabel.TabIndex = 4;
+			this.PortLabel.Text = ":";
+			// 
+			// ControlButton
+			// 
+			this.ControlButton.Location = new System.Drawing.Point(357, 157);
+			this.ControlButton.Name = "ControlButton";
+			this.ControlButton.Size = new System.Drawing.Size(75, 23);
+			this.ControlButton.TabIndex = 3;
+			this.ControlButton.Text = "Save";
+			this.ControlButton.UseVisualStyleBackColor = true;
+			this.ControlButton.Click += new System.EventHandler(this.ControlButton_Click);
+			// 
+			// PasswordTextBox
+			// 
+			this.PasswordTextBox.Location = new System.Drawing.Point(120, 77);
+			this.PasswordTextBox.Name = "PasswordTextBox";
+			this.PasswordTextBox.Size = new System.Drawing.Size(294, 23);
+			this.PasswordTextBox.TabIndex = 6;
+			this.PasswordTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(10, 80);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(64, 17);
+			this.label1.TabIndex = 7;
+			this.label1.Text = "Password";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(10, 110);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(101, 17);
+			this.label2.TabIndex = 9;
+			this.label2.Text = "Encrypt Method";
+			// 
+			// EncryptMethodComboBox
+			// 
+			this.EncryptMethodComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.EncryptMethodComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.EncryptMethodComboBox.FormattingEnabled = true;
+			this.EncryptMethodComboBox.Location = new System.Drawing.Point(120, 106);
+			this.EncryptMethodComboBox.Name = "EncryptMethodComboBox";
+			this.EncryptMethodComboBox.Size = new System.Drawing.Size(294, 24);
+			this.EncryptMethodComboBox.TabIndex = 8;
+			this.EncryptMethodComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBox_DrawItem);
+			// 
+			// Shadowsocks
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(444, 192);
+			this.Controls.Add(this.ConfigurationGroupBox);
+			this.Controls.Add(this.ControlButton);
+			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.MaximizeBox = false;
+			this.Name = "Shadowsocks";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Text = "Shadowsocks";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Shadowsocks_FormClosing);
+			this.Load += new System.EventHandler(this.Shadowsocks_Load);
+			this.ConfigurationGroupBox.ResumeLayout(false);
+			this.ConfigurationGroupBox.PerformLayout();
+			this.ResumeLayout(false);
+
+		}
+
+		#endregion
+
+		private System.Windows.Forms.GroupBox ConfigurationGroupBox;
+		private System.Windows.Forms.TextBox PasswordTextBox;
+		private System.Windows.Forms.TextBox PortTextBox;
+		private System.Windows.Forms.TextBox AddressTextBox;
+		private System.Windows.Forms.Label AddressLabel;
+		private System.Windows.Forms.TextBox RemarkTextBox;
+		private System.Windows.Forms.Label RemarkLabel;
+		private System.Windows.Forms.Label PortLabel;
+		private System.Windows.Forms.Button ControlButton;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.ComboBox EncryptMethodComboBox;
+	}
+}

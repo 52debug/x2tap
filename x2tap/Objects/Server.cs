@@ -22,7 +22,7 @@ namespace x2tap.Objects
 		/// <summary>
 		///		类型（S5、SS、SR、V2）
 		/// </summary>
-		public string Type = String.Empty;
+		public string Type = String.Empty; // Socks5、Shadowsocks、ShadowsocksR、VMess
 
 		/// <summary>
 		///		地址（S5、SS、SR、V2）
@@ -95,7 +95,12 @@ namespace x2tap.Objects
 		public string Path = String.Empty;
 
 		/// <summary>
-		///		QUIC 密钥（V2）
+		///		QUIC 加密方式（V2）
+		/// </summary>
+		public string QUICEncryptMethod = "none";
+
+		/// <summary>
+		///		QUIC 加密密钥（V2）
 		/// </summary>
 		public string QUICSecret = String.Empty;
 
