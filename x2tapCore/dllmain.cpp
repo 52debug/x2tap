@@ -40,7 +40,7 @@ BOOL STDCALL CreateRoute(const char* address, int netmask, const char* gateway, 
 	return (CreateIpForwardEntry2(&GetRoute(address, netmask, gateway, index, metric)) == NO_ERROR) ? TRUE : FALSE;
 }
 
-// 修改路由规则的跃点数
+// 修改路由规则
 BOOL STDCALL ChangeRoute(const char* address, int netmask, const char* gateway, int index, int metric)
 {
 	return (SetIpForwardEntry2(&GetRoute(address, netmask, gateway, index, metric)) == NO_ERROR) ? TRUE : FALSE;
