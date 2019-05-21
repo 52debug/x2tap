@@ -28,18 +28,19 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Shadowsocks));
 			this.ConfigurationGroupBox = new System.Windows.Forms.GroupBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.EncryptMethodComboBox = new System.Windows.Forms.ComboBox();
+			this.PasswordTextBox = new System.Windows.Forms.TextBox();
 			this.PortTextBox = new System.Windows.Forms.TextBox();
 			this.AddressTextBox = new System.Windows.Forms.TextBox();
 			this.AddressLabel = new System.Windows.Forms.Label();
 			this.RemarkTextBox = new System.Windows.Forms.TextBox();
 			this.RemarkLabel = new System.Windows.Forms.Label();
 			this.PortLabel = new System.Windows.Forms.Label();
-			this.ControlButton = new System.Windows.Forms.Button();
-			this.PasswordTextBox = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.EncryptMethodComboBox = new System.Windows.Forms.ComboBox();
+			this.ControlButton = new System.Windows.Forms.Button();
 			this.ConfigurationGroupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -61,6 +62,34 @@
 			this.ConfigurationGroupBox.TabIndex = 2;
 			this.ConfigurationGroupBox.TabStop = false;
 			this.ConfigurationGroupBox.Text = "Configuration";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(10, 110);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(101, 17);
+			this.label2.TabIndex = 9;
+			this.label2.Text = "Encrypt Method";
+			// 
+			// EncryptMethodComboBox
+			// 
+			this.EncryptMethodComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.EncryptMethodComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.EncryptMethodComboBox.FormattingEnabled = true;
+			this.EncryptMethodComboBox.Location = new System.Drawing.Point(120, 106);
+			this.EncryptMethodComboBox.Name = "EncryptMethodComboBox";
+			this.EncryptMethodComboBox.Size = new System.Drawing.Size(294, 24);
+			this.EncryptMethodComboBox.TabIndex = 8;
+			this.EncryptMethodComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBox_DrawItem);
+			// 
+			// PasswordTextBox
+			// 
+			this.PasswordTextBox.Location = new System.Drawing.Point(120, 77);
+			this.PasswordTextBox.Name = "PasswordTextBox";
+			this.PasswordTextBox.Size = new System.Drawing.Size(294, 23);
+			this.PasswordTextBox.TabIndex = 6;
+			this.PasswordTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// PortTextBox
 			// 
@@ -113,6 +142,15 @@
 			this.PortLabel.TabIndex = 4;
 			this.PortLabel.Text = ":";
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(10, 80);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(64, 17);
+			this.label1.TabIndex = 7;
+			this.label1.Text = "Password";
+			// 
 			// ControlButton
 			// 
 			this.ControlButton.Location = new System.Drawing.Point(357, 157);
@@ -123,43 +161,6 @@
 			this.ControlButton.UseVisualStyleBackColor = true;
 			this.ControlButton.Click += new System.EventHandler(this.ControlButton_Click);
 			// 
-			// PasswordTextBox
-			// 
-			this.PasswordTextBox.Location = new System.Drawing.Point(120, 77);
-			this.PasswordTextBox.Name = "PasswordTextBox";
-			this.PasswordTextBox.Size = new System.Drawing.Size(294, 23);
-			this.PasswordTextBox.TabIndex = 6;
-			this.PasswordTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(10, 80);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(64, 17);
-			this.label1.TabIndex = 7;
-			this.label1.Text = "Password";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(10, 110);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(101, 17);
-			this.label2.TabIndex = 9;
-			this.label2.Text = "Encrypt Method";
-			// 
-			// EncryptMethodComboBox
-			// 
-			this.EncryptMethodComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.EncryptMethodComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.EncryptMethodComboBox.FormattingEnabled = true;
-			this.EncryptMethodComboBox.Location = new System.Drawing.Point(120, 106);
-			this.EncryptMethodComboBox.Name = "EncryptMethodComboBox";
-			this.EncryptMethodComboBox.Size = new System.Drawing.Size(294, 24);
-			this.EncryptMethodComboBox.TabIndex = 8;
-			this.EncryptMethodComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBox_DrawItem);
-			// 
 			// Shadowsocks
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -169,6 +170,7 @@
 			this.Controls.Add(this.ControlButton);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.MaximizeBox = false;
 			this.Name = "Shadowsocks";

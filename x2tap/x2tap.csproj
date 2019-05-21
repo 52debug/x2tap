@@ -59,6 +59,9 @@
   <PropertyGroup>
     <StartupObject>x2tap.x2tap</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\v2ray.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaxMind.Db, Version=2.0.0.0, Culture=neutral, PublicKeyToken=66afa4cc5ae853ac, processorArchitecture=MSIL">
       <HintPath>..\packages\MaxMind.Db.2.4.0\lib\net45\MaxMind.Db.dll</HintPath>
@@ -781,6 +784,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\flagHK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\v2ray.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

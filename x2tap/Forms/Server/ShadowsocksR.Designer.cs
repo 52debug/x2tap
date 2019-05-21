@@ -28,7 +28,16 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShadowsocksR));
 			this.ConfigurationGroupBox = new System.Windows.Forms.GroupBox();
+			this.OBFSParamLabel = new System.Windows.Forms.Label();
+			this.OBFSParamTextBox = new System.Windows.Forms.TextBox();
+			this.OBFSLabel = new System.Windows.Forms.Label();
+			this.OBFSComboBox = new System.Windows.Forms.ComboBox();
+			this.ProtocolParamLabel = new System.Windows.Forms.Label();
+			this.ProtocolParamTextBox = new System.Windows.Forms.TextBox();
+			this.ProtocolLabel = new System.Windows.Forms.Label();
+			this.ProtocolComboBox = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.EncryptMethodComboBox = new System.Windows.Forms.ComboBox();
 			this.PasswordTextBox = new System.Windows.Forms.TextBox();
@@ -40,14 +49,6 @@
 			this.PortLabel = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.ControlButton = new System.Windows.Forms.Button();
-			this.ProtocolComboBox = new System.Windows.Forms.ComboBox();
-			this.ProtocolLabel = new System.Windows.Forms.Label();
-			this.ProtocolParamTextBox = new System.Windows.Forms.TextBox();
-			this.ProtocolParamLabel = new System.Windows.Forms.Label();
-			this.OBFSComboBox = new System.Windows.Forms.ComboBox();
-			this.OBFSLabel = new System.Windows.Forms.Label();
-			this.OBFSParamTextBox = new System.Windows.Forms.TextBox();
-			this.OBFSParamLabel = new System.Windows.Forms.Label();
 			this.ConfigurationGroupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -77,6 +78,80 @@
 			this.ConfigurationGroupBox.TabIndex = 2;
 			this.ConfigurationGroupBox.TabStop = false;
 			this.ConfigurationGroupBox.Text = "Configuration";
+			// 
+			// OBFSParamLabel
+			// 
+			this.OBFSParamLabel.AutoSize = true;
+			this.OBFSParamLabel.Location = new System.Drawing.Point(10, 230);
+			this.OBFSParamLabel.Name = "OBFSParamLabel";
+			this.OBFSParamLabel.Size = new System.Drawing.Size(80, 17);
+			this.OBFSParamLabel.TabIndex = 17;
+			this.OBFSParamLabel.Text = "OBFS Param";
+			// 
+			// OBFSParamTextBox
+			// 
+			this.OBFSParamTextBox.Location = new System.Drawing.Point(120, 227);
+			this.OBFSParamTextBox.Name = "OBFSParamTextBox";
+			this.OBFSParamTextBox.Size = new System.Drawing.Size(294, 23);
+			this.OBFSParamTextBox.TabIndex = 16;
+			this.OBFSParamTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// OBFSLabel
+			// 
+			this.OBFSLabel.AutoSize = true;
+			this.OBFSLabel.Location = new System.Drawing.Point(10, 200);
+			this.OBFSLabel.Name = "OBFSLabel";
+			this.OBFSLabel.Size = new System.Drawing.Size(39, 17);
+			this.OBFSLabel.TabIndex = 15;
+			this.OBFSLabel.Text = "OBFS";
+			// 
+			// OBFSComboBox
+			// 
+			this.OBFSComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.OBFSComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.OBFSComboBox.FormattingEnabled = true;
+			this.OBFSComboBox.Location = new System.Drawing.Point(120, 196);
+			this.OBFSComboBox.Name = "OBFSComboBox";
+			this.OBFSComboBox.Size = new System.Drawing.Size(294, 24);
+			this.OBFSComboBox.TabIndex = 14;
+			this.OBFSComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBox_DrawItem);
+			// 
+			// ProtocolParamLabel
+			// 
+			this.ProtocolParamLabel.AutoSize = true;
+			this.ProtocolParamLabel.Location = new System.Drawing.Point(10, 170);
+			this.ProtocolParamLabel.Name = "ProtocolParamLabel";
+			this.ProtocolParamLabel.Size = new System.Drawing.Size(98, 17);
+			this.ProtocolParamLabel.TabIndex = 13;
+			this.ProtocolParamLabel.Text = "Protocol Param";
+			// 
+			// ProtocolParamTextBox
+			// 
+			this.ProtocolParamTextBox.Location = new System.Drawing.Point(120, 167);
+			this.ProtocolParamTextBox.Name = "ProtocolParamTextBox";
+			this.ProtocolParamTextBox.Size = new System.Drawing.Size(294, 23);
+			this.ProtocolParamTextBox.TabIndex = 12;
+			this.ProtocolParamTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// ProtocolLabel
+			// 
+			this.ProtocolLabel.AutoSize = true;
+			this.ProtocolLabel.Location = new System.Drawing.Point(10, 140);
+			this.ProtocolLabel.Name = "ProtocolLabel";
+			this.ProtocolLabel.Size = new System.Drawing.Size(57, 17);
+			this.ProtocolLabel.TabIndex = 11;
+			this.ProtocolLabel.Text = "Protocol";
+			// 
+			// ProtocolComboBox
+			// 
+			this.ProtocolComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.ProtocolComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.ProtocolComboBox.FormattingEnabled = true;
+			this.ProtocolComboBox.Location = new System.Drawing.Point(120, 136);
+			this.ProtocolComboBox.Name = "ProtocolComboBox";
+			this.ProtocolComboBox.Size = new System.Drawing.Size(294, 24);
+			this.ProtocolComboBox.TabIndex = 10;
+			this.ProtocolComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBox_DrawItem);
 			// 
 			// label2
 			// 
@@ -176,80 +251,6 @@
 			this.ControlButton.UseVisualStyleBackColor = true;
 			this.ControlButton.Click += new System.EventHandler(this.ControlButton_Click);
 			// 
-			// ProtocolComboBox
-			// 
-			this.ProtocolComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.ProtocolComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.ProtocolComboBox.FormattingEnabled = true;
-			this.ProtocolComboBox.Location = new System.Drawing.Point(120, 136);
-			this.ProtocolComboBox.Name = "ProtocolComboBox";
-			this.ProtocolComboBox.Size = new System.Drawing.Size(294, 24);
-			this.ProtocolComboBox.TabIndex = 10;
-			this.ProtocolComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBox_DrawItem);
-			// 
-			// ProtocolLabel
-			// 
-			this.ProtocolLabel.AutoSize = true;
-			this.ProtocolLabel.Location = new System.Drawing.Point(10, 140);
-			this.ProtocolLabel.Name = "ProtocolLabel";
-			this.ProtocolLabel.Size = new System.Drawing.Size(57, 17);
-			this.ProtocolLabel.TabIndex = 11;
-			this.ProtocolLabel.Text = "Protocol";
-			// 
-			// ProtocolParamTextBox
-			// 
-			this.ProtocolParamTextBox.Location = new System.Drawing.Point(120, 167);
-			this.ProtocolParamTextBox.Name = "ProtocolParamTextBox";
-			this.ProtocolParamTextBox.Size = new System.Drawing.Size(294, 23);
-			this.ProtocolParamTextBox.TabIndex = 12;
-			this.ProtocolParamTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// ProtocolParamLabel
-			// 
-			this.ProtocolParamLabel.AutoSize = true;
-			this.ProtocolParamLabel.Location = new System.Drawing.Point(10, 170);
-			this.ProtocolParamLabel.Name = "ProtocolParamLabel";
-			this.ProtocolParamLabel.Size = new System.Drawing.Size(98, 17);
-			this.ProtocolParamLabel.TabIndex = 13;
-			this.ProtocolParamLabel.Text = "Protocol Param";
-			// 
-			// OBFSComboBox
-			// 
-			this.OBFSComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.OBFSComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.OBFSComboBox.FormattingEnabled = true;
-			this.OBFSComboBox.Location = new System.Drawing.Point(120, 196);
-			this.OBFSComboBox.Name = "OBFSComboBox";
-			this.OBFSComboBox.Size = new System.Drawing.Size(294, 24);
-			this.OBFSComboBox.TabIndex = 14;
-			this.OBFSComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBox_DrawItem);
-			// 
-			// OBFSLabel
-			// 
-			this.OBFSLabel.AutoSize = true;
-			this.OBFSLabel.Location = new System.Drawing.Point(10, 200);
-			this.OBFSLabel.Name = "OBFSLabel";
-			this.OBFSLabel.Size = new System.Drawing.Size(39, 17);
-			this.OBFSLabel.TabIndex = 15;
-			this.OBFSLabel.Text = "OBFS";
-			// 
-			// OBFSParamTextBox
-			// 
-			this.OBFSParamTextBox.Location = new System.Drawing.Point(120, 227);
-			this.OBFSParamTextBox.Name = "OBFSParamTextBox";
-			this.OBFSParamTextBox.Size = new System.Drawing.Size(294, 23);
-			this.OBFSParamTextBox.TabIndex = 16;
-			this.OBFSParamTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// OBFSParamLabel
-			// 
-			this.OBFSParamLabel.AutoSize = true;
-			this.OBFSParamLabel.Location = new System.Drawing.Point(10, 230);
-			this.OBFSParamLabel.Name = "OBFSParamLabel";
-			this.OBFSParamLabel.Size = new System.Drawing.Size(80, 17);
-			this.OBFSParamLabel.TabIndex = 17;
-			this.OBFSParamLabel.Text = "OBFS Param";
-			// 
 			// ShadowsocksR
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -259,6 +260,7 @@
 			this.Controls.Add(this.ControlButton);
 			this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.MaximizeBox = false;
 			this.Name = "ShadowsocksR";
