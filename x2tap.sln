@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "x2tap", "x2tap\x2tap.csproj", "{65CDE3D3-D115-4CF9-8862-1A886E313E6D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "x2tapCore", "x2tapCore\x2tapCore.vcxproj", "{6DB73965-BC83-4959-B5DB-FD794068DFE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{65CDE3D3-D115-4CF9-8862-1A886E313E6D}.Release|x64.Build.0 = Release|x64
 		{65CDE3D3-D115-4CF9-8862-1A886E313E6D}.Release|x86.ActiveCfg = Release|x86
 		{65CDE3D3-D115-4CF9-8862-1A886E313E6D}.Release|x86.Build.0 = Release|x86
+		{6DB73965-BC83-4959-B5DB-FD794068DFE0}.Debug|x64.ActiveCfg = Debug|x64
+		{6DB73965-BC83-4959-B5DB-FD794068DFE0}.Debug|x64.Build.0 = Debug|x64
+		{6DB73965-BC83-4959-B5DB-FD794068DFE0}.Debug|x86.ActiveCfg = Debug|Win32
+		{6DB73965-BC83-4959-B5DB-FD794068DFE0}.Debug|x86.Build.0 = Debug|Win32
+		{6DB73965-BC83-4959-B5DB-FD794068DFE0}.Release|x64.ActiveCfg = Release|x64
+		{6DB73965-BC83-4959-B5DB-FD794068DFE0}.Release|x64.Build.0 = Release|x64
+		{6DB73965-BC83-4959-B5DB-FD794068DFE0}.Release|x86.ActiveCfg = Release|Win32
+		{6DB73965-BC83-4959-B5DB-FD794068DFE0}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
