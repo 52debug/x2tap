@@ -18,7 +18,6 @@ Can intercept all connections at the network layer and transfer them to Socks5, 
 - [tap-windows](https://build.openvpn.net/downloads/releases/latest/tap-windows-latest-stable.exe)
 - [v2ray-core](https://github.com/v2ray/v2ray-core/releases)
 - [tun2socks](https://github.com/eycorsican/go-tun2socks)
-- [x2tapCore](https://github.com/hacking001/x2tapCore)
 
 ## Mirrors
 - [Github](https://github.com/hacking001/x2tap)
