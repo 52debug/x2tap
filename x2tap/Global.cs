@@ -94,6 +94,17 @@ namespace x2tap
 			};
 
 			/// <summary>
+			///		VMess 解密列表
+			/// </summary>
+			public static List<string> VMess = new List<string>()
+			{
+				"none",
+				"auto",
+				"aes-128-gcm",
+				"chacha20-poly1305"
+			};
+
+			/// <summary>
 			///		VMess QUIC 加密列表
 			/// </summary>
 			public static List<string> VMessQUIC = new List<string>()

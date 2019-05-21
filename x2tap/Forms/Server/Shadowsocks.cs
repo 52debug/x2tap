@@ -86,6 +86,7 @@ namespace x2tap.Forms.Server
 				Global.Servers[Index] = new Objects.Server()
 				{
 					Remark = RemarkTextBox.Text,
+					GroupID = Global.Servers[Index].GroupID,
 					Type = "Shadowsocks",
 					Address = AddressTextBox.Text,
 					Port = int.Parse(PortTextBox.Text),
@@ -94,6 +95,7 @@ namespace x2tap.Forms.Server
 				};
 			}
 
+			MessageBox.Show(Utils.MultiLanguage.Translate("Saved"), Utils.MultiLanguage.Translate("Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
 			Close();
 		}
 	}

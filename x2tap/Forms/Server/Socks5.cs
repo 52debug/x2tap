@@ -47,12 +47,14 @@ namespace x2tap.Forms.Server
 				Global.Servers[Index] = new Objects.Server()
 				{
 					Remark = RemarkTextBox.Text,
+					GroupID = Global.Servers[Index].GroupID,
 					Type = "Socks5",
 					Address = AddressTextBox.Text,
 					Port = int.Parse(PortTextBox.Text)
 				};
 			}
 
+			MessageBox.Show(Utils.MultiLanguage.Translate("Saved"), Utils.MultiLanguage.Translate("Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
 			Close();
 		}
 	}

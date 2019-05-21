@@ -97,7 +97,7 @@ namespace x2tap.Objects
 		/// <summary>
 		///		QUIC 加密方式（V2）
 		/// </summary>
-		public string QUICEncryptMethod = "none";
+		public string QUICSecurity = "none";
 
 		/// <summary>
 		///		QUIC 加密密钥（V2）

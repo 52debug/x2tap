@@ -231,7 +231,8 @@ namespace x2tap.Forms
 
 		private void AddVMessServerToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			new Server.VMess().Show();
+			Hide();
 		}
 
 		private void AddSubscribeLinkToolStripMenuItem_Click(object sender, EventArgs e)
@@ -279,21 +280,21 @@ namespace x2tap.Forms
 			{
 				var item = Global.Servers[ServerComboBox.SelectedIndex];
 
-				if (item.Type == "Socks5")
+				if (ServerComboBox.Text.StartsWith("[S5]"))
 				{
 					new Server.Socks5(ServerComboBox.SelectedIndex).Show();
 				}
-				else if (item.Type == "Shadowsocks")
+				else if (ServerComboBox.Text.StartsWith("[SS]"))
 				{
 					new Server.Shadowsocks(ServerComboBox.SelectedIndex).Show();
 				}
-				else if (item.Type == "ShadowsocksR")
+				else if (ServerComboBox.Text.StartsWith("[SR]"))
 				{
 					new Server.ShadowsocksR(ServerComboBox.SelectedIndex).Show();
 				}
-				else if (item.Type == "VMess")
+				else if (ServerComboBox.Text.StartsWith("[V2]"))
 				{
-					return;
+					new Server.VMess(ServerComboBox.SelectedIndex).Show();
 				}
 				else
 				{
