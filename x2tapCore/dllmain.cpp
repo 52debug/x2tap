@@ -34,11 +34,19 @@ MIB_IPFORWARD_ROW2 GetRoute(const char* address, int netmask, const char* gatewa
 	return row;
 }
 
+// 创建路由规则
 BOOL STDCALL CreateRoute(const char* address, int netmask, const char* gateway, int index, int metric = 100)
 {
 	return (CreateIpForwardEntry2(&GetRoute(address, netmask, gateway, index, metric)) == NO_ERROR) ? TRUE : FALSE;
 }
 
+// 修改路由规则的跃点数
+BOOL STDCALL ChangeRoute(const char* address, int netmask, const char* gateway, int index, int metric)
+{
+	return (SetIpForwardEntry2(&GetRoute(address, netmask, gateway, index, metric)) == NO_ERROR) ? TRUE : FALSE;
+}
+
+// 删除路由规则
 BOOL STDCALL DeleteRoute(const char* address, int netmask, const char* gateway, int index, int metric = 100)
 {
 	return (DeleteIpForwardEntry2(&GetRoute(address, netmask, gateway, index, metric)) == NO_ERROR) ? TRUE : FALSE;
