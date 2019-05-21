@@ -15,6 +15,23 @@ namespace x2tap
 		[STAThread]
 		public static void Main()
 		{
+#if DEBUG
+			if (Directory.Exists("Logging"))
+			{
+				Directory.Delete("Logging", true);
+			}
+
+			if (Directory.Exists("Language"))
+			{
+				Directory.Delete("Language", true);
+			}
+
+			if (Directory.Exists("Data"))
+			{
+				Directory.Delete("Data", true);
+			}
+#endif
+
 			// 预先创建文件夹：日志
 			if (!File.Exists("Logging"))
 			{

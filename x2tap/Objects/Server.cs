@@ -17,72 +17,92 @@ namespace x2tap.Objects
 		/// <summary>
 		///		组名（S5、SS、SR、V2）
 		/// </summary>
-		public string GroupName = "00000000-0000-0000-0000-000000000000";
+		public string GroupID = "00000000-0000-0000-0000-000000000000";
 
 		/// <summary>
 		///		类型（S5、SS、SR、V2）
 		/// </summary>
-		public string Type;
+		public string Type = String.Empty;
 
 		/// <summary>
 		///		地址（S5、SS、SR、V2）
 		/// </summary>
-		public string Address;
+		public string Address = String.Empty;
 
 		/// <summary>
 		///		端口（S5、SS、SR、V2）
 		/// </summary>
-		public int Port;
+		public int Port = 0;
 
 		/// <summary>
 		///		密码（SS、SR）
 		/// </summary>
-		public string Password;
+		public string Password = String.Empty;
 
 		/// <summary>
 		///		用户 ID（V2）
 		/// </summary>
-		public string UserID;
+		public string UserID = String.Empty;
 
 		/// <summary>
 		///		额外 ID（V2）
 		/// </summary>
-		public int AlterID;
+		public int AlterID = 0;
 
 		/// <summary>
 		///		加密方式（SS、SR、V2 QUIC）
 		/// </summary>
-		public string EncryptMethod;
+		public string EncryptMethod = String.Empty;
+
+		/// <summary>
+		///		协议（SR）
+		/// </summary>
+		public string Protocol = "origin";
+
+		/// <summary>
+		///		协议参数（SR）
+		/// </summary>
+		public string ProtocolParam = String.Empty;
+
+		/// <summary>
+		///		混淆（SR）
+		/// </summary>
+		public string OBFS = "plain";
+
+		/// <summary>
+		///		混淆参数（SR）
+		/// </summary>
+		public string OBFSParam = String.Empty;
 
 		/// <summary>
 		///		传输协议（V2）
 		/// </summary>
-		public string TransferProtocol;
+		public string TransferProtocol = "tcp";
 
 		/// <summary>
 		///		伪装类型（V2）
 		/// </summary>
-		public string FakeType;
+		public string FakeType = String.Empty;
 
 		/// <summary>
 		///		伪装域名（V2：HTTP、WebSocket、HTTP/2）
 		/// </summary>
-		public string Host;
+		public string Host = String.Empty;
 
 		/// <summary>
 		///		传输路径（V2：WebSocket、HTTP/2）
 		/// </summary>
-		public string Path;
+		public string Path = String.Empty;
 
 		/// <summary>
 		///		QUIC 密钥（V2）
 		/// </summary>
-		public string QUICSecret;
+		public string QUICSecret = String.Empty;
 
 		/// <summary>
 		///		TLS 底层传输安全（V2）
 		/// </summary>
-		public bool TLSSecure;
+		public bool TLSSecure = false;
 
 		/// <summary>
 		///		国家代码
@@ -129,15 +149,15 @@ namespace x2tap.Objects
 				});
 			}
 
-			if (Type == "S5")
+			if (Type == "Socks5")
 			{
 				return String.Format("[{0}] {1}", "S5", Remark);
 			}
-			else if (Type == "SS")
+			else if (Type == "Shadowsocks")
 			{
 				return String.Format("[{0}] {1}", "SS", Remark);
 			}
-			else if (Type == "SR")
+			else if (Type == "ShadowsocksR")
 			{
 				return String.Format("[{0}] {1}", "SR", Remark);
 			}

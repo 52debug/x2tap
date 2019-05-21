@@ -101,10 +101,12 @@ namespace x2tap.Forms
 		{
 			Global.Servers.Add(new Objects.Server()
 			{
-				Remark = "N3RO 是最棒的 ！",
-				Type = "SS",
+				Remark = "N3RO 是最棒的！",
+				Type = "Shadowsocks",
 				Address = "www.baidu.com",
-				Port = 443
+				Port = 443,
+				Password = "ok, np",
+				EncryptMethod = "rc4-md5"
 			});
 
 			// 加载翻译
@@ -213,22 +215,26 @@ namespace x2tap.Forms
 
 		private void AddSocks5ServerToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			new ServerForm("Socks5").Show();
+			Hide();
 		}
 
 		private void AddShadowsocksServerToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			new ServerForm("Shadowsocks").Show();
+			Hide();
 		}
 
 		private void AddShadowsocksRServerToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			new ServerForm("ShadowsocksR").Show();
+			Hide();
 		}
 
 		private void AddVMessServerToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			new ServerForm("VMess").Show();
+			Hide();
 		}
 
 		private void AddSubscribeLinkToolStripMenuItem_Click(object sender, EventArgs e)
@@ -274,7 +280,8 @@ namespace x2tap.Forms
 		{
 			if (ServerComboBox.SelectedIndex != -1)
 			{
-
+				new ServerForm(ServerComboBox.Items[ServerComboBox.SelectedIndex]).Show();
+				Hide();
 			}
 			else
 			{
