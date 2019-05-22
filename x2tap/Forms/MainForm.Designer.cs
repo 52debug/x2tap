@@ -58,6 +58,7 @@
 			this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.ControlButton = new System.Windows.Forms.Button();
 			this.SettingsButton = new System.Windows.Forms.Button();
+			this.UsedBandwidthLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.ToolStrip.SuspendLayout();
 			this.ConfigurationGroupBox.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SpeedPictureBox)).BeginInit();
@@ -286,6 +287,7 @@
 			this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.UplinkLabel,
             this.DownlinkLabel,
+            this.UsedBandwidthLabel,
             this.StatusLabel});
 			this.StatusStrip.Location = new System.Drawing.Point(0, 150);
 			this.StatusStrip.Name = "StatusStrip";
@@ -332,6 +334,12 @@
 			this.SettingsButton.Text = "Settings";
 			this.SettingsButton.UseVisualStyleBackColor = true;
 			this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
+			// 
+			// UsedBandwidthLabel
+			// 
+			this.UsedBandwidthLabel.Name = "UsedBandwidthLabel";
+			this.UsedBandwidthLabel.Size = new System.Drawing.Size(68, 17);
+			this.UsedBandwidthLabel.Text = "Used: 0KB";
 			// 
 			// MainForm
 			// 
@@ -398,5 +406,6 @@
 		private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
 		private System.Windows.Forms.PictureBox EditPictureBox;
 		private System.Windows.Forms.ComboBox ServerComboBox;
+		private System.Windows.Forms.ToolStripStatusLabel UsedBandwidthLabel;
 	}
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 
 namespace x2tap
 {
@@ -191,6 +192,8 @@ namespace x2tap
 		/// </summary>
 		public static class TUNTAP
 		{
+			public static NetworkInterface Adapter;
+
 			/// <summary>
 			///		索引
 			/// </summary>

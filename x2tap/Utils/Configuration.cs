@@ -22,7 +22,6 @@ namespace x2tap.Utils
 		{
 			if (File.Exists("Data\\TUNTAP.ini"))
 			{
-				Logging.Info("正在读取 TUN/TAP 配置信息");
 				var parser = new IniParser.FileIniDataParser();
 				var data = parser.ReadFile("Data\\TUNTAP.ini");
 
@@ -58,7 +57,6 @@ namespace x2tap.Utils
 
 			if (File.Exists("Data\\Servers.json"))
 			{
-				Logging.Info("正在读取服务器配置信息");
 				Global.Servers = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Objects.Server>>(File.ReadAllText("Data\\Servers.json"));
 			}
 		}
@@ -91,7 +89,6 @@ namespace x2tap.Utils
 
 			parser.WriteFile("Data\\TUNTAP.ini", data);
 
-			Logging.Info("正在写入服务器配置信息");
 			File.WriteAllText("Data\\Servers.json", Newtonsoft.Json.JsonConvert.SerializeObject(Global.Servers));
 		}
 
@@ -144,6 +141,7 @@ namespace x2tap.Utils
 			{
 				if (adapter.Name == name)
 				{
+					Global.TUNTAP.Adapter = adapter;
 					Global.TUNTAP.Index = adapter.GetIPProperties().GetIPv4Properties().Index;
 
 					break;

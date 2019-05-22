@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,6 +28,27 @@ namespace x2tap.Forms
 		/// </summary>
 		public Controllers.TUNTAPController TUNTAPController;
 
+		/// <summary>
+		///		上行流量
+		/// </summary>
+		public long UplinkBandwidth = 0;
+
+		/// <summary>
+		///		上一次的上行流量
+		/// </summary>
+		public long LastUplinkBandwidth = 0;
+
+		/// <summary>
+		///		下行流量
+		/// </summary>
+		public long DownlinkBandwidth = 0;
+
+
+		/// <summary>
+		///		上一次的下行流量
+		/// </summary>
+		public long LastDownlinkBandwidth = 0;
+
 		public MainForm()
 		{
 			InitializeComponent();
@@ -40,8 +62,6 @@ namespace x2tap.Forms
 		/// </summary>
 		public void InitServers()
 		{
-			Utils.Logging.Info("正在加载服务器列表中");
-
 			// 先清理一下
 			ServerComboBox.Items.Clear();
 
@@ -112,7 +132,6 @@ namespace x2tap.Forms
 		private void MainForm_Load(object sender, EventArgs e)
 		{
 			// 加载翻译
-			Utils.Logging.Info("正在加载翻译中");
 			ServerToolStripDropDownButton.Text = Utils.MultiLanguage.Translate("Server");
 			AddSocks5ServerToolStripMenuItem.Text = Utils.MultiLanguage.Translate("Add [Socks5] Server");
 			AddShadowsocksServerToolStripMenuItem.Text = Utils.MultiLanguage.Translate("Add [Shadowsocks] Server");
@@ -159,7 +178,6 @@ namespace x2tap.Forms
 			});
 
 			// 加载模式列表
-			Utils.Logging.Info("加载模式列表中");
 			foreach (var mode in Global.Modes)
 			{
 				ModeComboBox.Items.Add(mode);
@@ -174,8 +192,6 @@ namespace x2tap.Forms
 					// 必须在没有启动和窗体显示的情况下才能进行测延迟
 					if ((State == Objects.State.Waiting || State == Objects.State.Stopped) && Visible)
 					{
-						Utils.Logging.Info("正在测试所有服务器延迟中");
-
 						// 遍历服务器列表
 						foreach (var server in Global.Servers)
 						{
@@ -186,20 +202,6 @@ namespace x2tap.Forms
 
 					// 延迟 10 秒
 					Thread.Sleep(10000);
-				}
-			});
-
-			// 速度显示线程
-			Task.Run(() =>
-			{
-				while (true)
-				{
-					if (State == Objects.State.Started)
-					{
-
-					}
-
-					Thread.Sleep(1000);
 				}
 			});
 		}
@@ -272,25 +274,21 @@ namespace x2tap.Forms
 
 		private void GitHubProjectToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			Utils.Logging.Info("正在打开 GitHub 项目中");
 			Process.Start("https://github.com/hacking001/x2tap");
 		}
 
 		private void TelegramGroupToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			Utils.Logging.Info("正在打开 Telegram 群组中");
 			Process.Start("https://t.me/x2tapChat");
 		}
 
 		private void TelegramChannelToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			Utils.Logging.Info("正在打开 Telegram 频道中");
 			Process.Start("https://t.me/x2tap");
 		}
 
 		private void VersionToolStripLabel_Click(object sender, EventArgs e)
 		{
-			Utils.Logging.Info("正在打开 GitHub 发布页中");
 			Process.Start("https://github.com/hacking001/x2tap/releases");
 		}
 
@@ -389,6 +387,7 @@ namespace x2tap.Forms
 
 						try
 						{
+							// 查询服务器 IP 地址
 							var destination = Dns.GetHostAddressesAsync(server.Address);
 							if (destination.Wait(1000))
 							{
@@ -405,6 +404,7 @@ namespace x2tap.Forms
 								ServerAddresses = destination.Result;
 							}
 
+							// 启动实例
 							TUNTAPController = new Controllers.TUNTAPController();
 							if (TUNTAPController.Start(ServerComboBox.SelectedItem as Objects.Server))
 							{
@@ -429,11 +429,13 @@ namespace x2tap.Forms
 								return;
 							}
 
+							// 让服务器 IP 走直连
 							foreach (var address in ServerAddresses)
 							{
 								NativeMethods.CreateRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
 							}
 
+							// 处理模式的绕过中国
 							if (mode.BypassChina)
 							{
 								using (var sr = new StringReader(Encoding.UTF8.GetString(Properties.Resources.CNIP)))
@@ -449,6 +451,7 @@ namespace x2tap.Forms
 								}
 							}
 
+							// 创建默认路由规则
 							if (!NativeMethods.CreateRoute("0.0.0.0", 0, Global.TUNTAP.Gateway.ToString(), Global.TUNTAP.Index, 10))
 							{
 								State = Objects.State.Stopped;
@@ -466,7 +469,39 @@ namespace x2tap.Forms
 								return;
 							}
 
+							// 设置状态：已启动
 							State = Objects.State.Started;
+
+							// 速度显示线程
+							Task.Run(() =>
+							{
+								var first = true;
+
+								while (State == Objects.State.Started)
+								{
+									var stats = Global.TUNTAP.Adapter.GetIPv4Statistics();
+
+									if (first)
+									{
+										LastUplinkBandwidth = stats.BytesSent;
+										LastDownlinkBandwidth = stats.BytesReceived;
+
+										first = false;
+										Thread.Sleep(1000);
+										continue;
+									}
+
+									UplinkLabel.Text = String.Format("↑{0}{1}/s", Utils.MultiLanguage.Translate(": "), Utils.Util.ComputeBandwidth(stats.BytesSent - UplinkBandwidth));
+									DownlinkLabel.Text = String.Format("↑{0}{1}/s", Utils.MultiLanguage.Translate(": "), Utils.Util.ComputeBandwidth(stats.BytesReceived - DownlinkBandwidth));
+									UsedBandwidthLabel.Text = String.Format("{0}{1}{2}", Utils.MultiLanguage.Translate("Used"), Utils.MultiLanguage.Translate(": "), Utils.Util.ComputeBandwidth(stats.BytesSent + stats.BytesReceived - LastUplinkBandwidth - LastDownlinkBandwidth));
+
+									UplinkBandwidth = stats.BytesSent;
+									DownlinkBandwidth = stats.BytesReceived;
+
+									Thread.Sleep(1000);
+								}
+							});
+
 							StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Started");
 							ControlButton.Text = Utils.MultiLanguage.Translate("Stop");
 							ControlButton.Enabled = true;

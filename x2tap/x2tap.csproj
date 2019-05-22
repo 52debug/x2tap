@@ -153,6 +153,7 @@
     <Compile Include="Utils\GeoIP.cs" />
     <Compile Include="Utils\Logging.cs" />
     <Compile Include="Utils\TUNTAP.cs" />
+    <Compile Include="Utils\Util.cs" />
     <Compile Include="x2tap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\MainForm.resx">
