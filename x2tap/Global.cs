@@ -192,6 +192,9 @@ namespace x2tap
 		/// </summary>
 		public static class TUNTAP
 		{
+			/// <summary>
+			///		适配器
+			/// </summary>
 			public static NetworkInterface Adapter;
 
 			/// <summary>

@@ -7,6 +7,7 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace x2tap.Utils
 {
@@ -135,7 +136,13 @@ namespace x2tap.Utils
 			}
 
 			// 搜索 TUN/TAP 适配器的索引
-			Global.TUNTAP.ComponentID = Utils.TUNTAP.GetComponentID();
+			Global.TUNTAP.ComponentID = TUNTAP.GetComponentID();
+			if (String.IsNullOrEmpty(Global.TUNTAP.ComponentID))
+			{
+				MessageBox.Show(MultiLanguage.Translate("Please install TAP-Windows and create an TUN/TAP adapter manually"), Utils.MultiLanguage.Translate("Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+				Environment.Exit(1);
+			}
+
 			var name = TUNTAP.GetName(Global.TUNTAP.ComponentID);
 			foreach (var adapter in NetworkInterface.GetAllNetworkInterfaces())
 			{
