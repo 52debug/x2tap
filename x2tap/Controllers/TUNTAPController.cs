@@ -59,7 +59,7 @@ namespace x2tap.Controllers
 			Instance.StartInfo.WorkingDirectory = String.Format("{0}\\Bin", Directory.GetCurrentDirectory());
 			Instance.StartInfo.FileName = String.Format("{0}\\Bin\\tun2socks.exe", Directory.GetCurrentDirectory());
 
-			var dns = "1.2.4.8";
+			var dns = "8.8.8.8";
 			if (Global.TUNTAP.UseCustomDNS)
 			{
 				dns = "";

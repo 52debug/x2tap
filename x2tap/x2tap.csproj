@@ -817,7 +817,6 @@ RD /S /Q Bin
 MKDIR Bin
 COPY /Y $(SolutionDir)\binaries\$(PlatformName)\*.dll $(TargetDir)\Bin\
 COPY /Y $(SolutionDir)\binaries\$(PlatformName)\*.exe $(TargetDir)\Bin\
-COPY /Y $(SolutionDir)\binaries\*.dat $(TargetDir)\Bin\
 COPY /Y $(SolutionDir)\binaries\*.dll $(TargetDir)\Bin\
 COPY /Y $(SolutionDir)\binaries\*.exe $(TargetDir)\Bin\</PreBuildEvent>
   </PropertyGroup>

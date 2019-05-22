@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace x2tap
@@ -35,7 +36,7 @@ namespace x2tap
 			// 如果当前系统语言为中文，先从程序自带的资源中加载中文翻译
 			if (CultureInfo.InstalledUICulture.Name == "zh-CN")
 			{
-				// Global.i18N = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(Encoding.UTF8.GetString(Properties.Resources.zh_CN));
+				Global.i18N = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(Encoding.UTF8.GetString(Properties.Resources.zh_CN));
 			}
 
 			// 如果存在对应的语言文件，就使用语言的文件的翻译

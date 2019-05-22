@@ -20,7 +20,7 @@ namespace x2tap.Forms
 		/// <summary>
 		///		服务器 IP 地址
 		/// </summary>
-		public IPAddress[] ServerAddresses;
+		public IPAddress[] ServerAddresses = new IPAddress[0];
 
 		/// <summary>
 		///		TUN/TAP 控制器
@@ -111,17 +111,6 @@ namespace x2tap.Forms
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			Global.Servers.Add(new Objects.Server()
-			{
-				Remark = "N3RO 是最棒的！",
-				Type = "VMess",
-				Address = "www.baidu.com",
-				Port = 443,
-				UserID = Guid.NewGuid().ToString(),
-				AlterID = 0,
-				TransferProtocol = "tcp"
-			});
-
 			// 加载翻译
 			Utils.Logging.Info("正在加载翻译中");
 			ServerToolStripDropDownButton.Text = Utils.MultiLanguage.Translate("Server");
@@ -197,6 +186,20 @@ namespace x2tap.Forms
 
 					// 延迟 10 秒
 					Thread.Sleep(10000);
+				}
+			});
+
+			// 速度显示线程
+			Task.Run(() =>
+			{
+				while (true)
+				{
+					if (State == Objects.State.Started)
+					{
+
+					}
+
+					Thread.Sleep(1000);
 				}
 			});
 		}
@@ -384,87 +387,127 @@ namespace x2tap.Forms
 						var server = ServerComboBox.SelectedItem as Objects.Server;
 						var mode = ModeComboBox.SelectedItem as Objects.Mode;
 
-						var destination = Dns.GetHostAddressesAsync(server.Address);
-						if (destination.Wait(1000))
+						try
 						{
-							if (destination.Result.Length == 0)
+							var destination = Dns.GetHostAddressesAsync(server.Address);
+							if (destination.Wait(1000))
+							{
+								if (destination.Result.Length == 0)
+								{
+									State = Objects.State.Stopped;
+									StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Resolve server IP failed");
+									ControlButton.Text = Utils.MultiLanguage.Translate("Start");
+									ControlButton.Enabled = true;
+									ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
+									return;
+								}
+
+								ServerAddresses = destination.Result;
+							}
+
+							TUNTAPController = new Controllers.TUNTAPController();
+							if (TUNTAPController.Start(ServerComboBox.SelectedItem as Objects.Server))
+							{
+								TUNTAPController.Instance.Exited += OnExited;
+
+								if (server.Type == "Shadowsocks")
+								{
+									TUNTAPController.SSController.Instance.Exited += OnExited;
+								}
+								else if (server.Type == "ShadowsocksR")
+								{
+									TUNTAPController.SRController.Instance.Exited += OnExited;
+								}
+							}
+							else
 							{
 								State = Objects.State.Stopped;
-								StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Resolve server IP failed");
+								StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Starting failed");
 								ControlButton.Text = Utils.MultiLanguage.Translate("Start");
 								ControlButton.Enabled = true;
 								ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
 								return;
 							}
 
-							ServerAddresses = destination.Result;
-						}
-
-						TUNTAPController = new Controllers.TUNTAPController();
-						if (TUNTAPController.Start(ServerComboBox.SelectedItem as Objects.Server))
-						{
-							TUNTAPController.Instance.Exited += OnExited;
-
-							if (server.Type == "Shadowsocks")
+							foreach (var address in ServerAddresses)
 							{
-								TUNTAPController.SSController.Instance.Exited += OnExited;
+								NativeMethods.CreateRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
 							}
-							else if (server.Type == "ShadowsocksR")
+
+							if (mode.BypassChina)
 							{
-								TUNTAPController.SRController.Instance.Exited += OnExited;
-							}
-						}
-						else
-						{
-							State = Objects.State.Stopped;
-							StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Starting failed");
-							ControlButton.Text = Utils.MultiLanguage.Translate("Start");
-							ControlButton.Enabled = true;
-							ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
-							return;
-						}
-
-						foreach (var address in ServerAddresses)
-						{
-							NativeMethods.CreateRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
-						}
-
-						if (mode.BypassChina)
-						{
-							using (var sr = new StringReader(Encoding.UTF8.GetString(Properties.Resources.CNIP)))
-							{
-								string text;
-
-								while ((text = sr.ReadLine()) != null)
+								using (var sr = new StringReader(Encoding.UTF8.GetString(Properties.Resources.CNIP)))
 								{
-									var info = text.Split('/');
+									string text;
 
-									NativeMethods.CreateRoute(info[0], int.Parse(info[1]), Global.Adapter.Gateway.ToString(), Global.TUNTAP.Index);
+									while ((text = sr.ReadLine()) != null)
+									{
+										var info = text.Split('/');
+
+										NativeMethods.CreateRoute(info[0], int.Parse(info[1]), Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
+									}
 								}
 							}
-						}
 
-						if (!NativeMethods.CreateRoute("0.0.0.0", 0, Global.TUNTAP.Gateway.ToString(), Global.TUNTAP.Index, 10))
+							if (!NativeMethods.CreateRoute("0.0.0.0", 0, Global.TUNTAP.Gateway.ToString(), Global.TUNTAP.Index, 10))
+							{
+								State = Objects.State.Stopped;
+
+								foreach (var address in ServerAddresses)
+								{
+									NativeMethods.DeleteRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
+								}
+
+								TUNTAPController.Stop();
+								StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Setting route table failed");
+								ControlButton.Text = Utils.MultiLanguage.Translate("Start");
+								ControlButton.Enabled = true;
+								ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
+								return;
+							}
+
+							State = Objects.State.Started;
+							StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Started");
+							ControlButton.Text = Utils.MultiLanguage.Translate("Stop");
+							ControlButton.Enabled = true;
+						}
+						catch (Exception ex)
 						{
-							State = Objects.State.Stopped;
+							Utils.Logging.Info(ex.ToString());
+
+							if (TUNTAPController != null)
+							{
+								TUNTAPController.Stop();
+							}
+
+							NativeMethods.DeleteRoute("0.0.0.0", 0, Global.TUNTAP.Gateway.ToString(), Global.TUNTAP.Index, 10);
+
+							if (mode.BypassChina)
+							{
+								using (var sr = new StringReader(Encoding.UTF8.GetString(Properties.Resources.CNIP)))
+								{
+									string text;
+
+									while ((text = sr.ReadLine()) != null)
+									{
+										var info = text.Split('/');
+
+										NativeMethods.DeleteRoute(info[0], int.Parse(info[1]), Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
+									}
+								}
+							}
 
 							foreach (var address in ServerAddresses)
 							{
 								NativeMethods.DeleteRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
 							}
 
-							TUNTAPController.Stop();
-							StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Setting route table failed");
+							StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Unknown error");
 							ControlButton.Text = Utils.MultiLanguage.Translate("Start");
 							ControlButton.Enabled = true;
 							ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
 							return;
 						}
-
-						State = Objects.State.Started;
-						StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Started");
-						ControlButton.Text = Utils.MultiLanguage.Translate("Stop");
-						ControlButton.Enabled = true;
 					});
 				}
 				else
@@ -490,7 +533,7 @@ namespace x2tap.Forms
 								{
 									var info = text.Split('/');
 
-									NativeMethods.DeleteRoute(info[0], int.Parse(info[1]), Global.Adapter.Gateway.ToString(), Global.TUNTAP.Index);
+									NativeMethods.DeleteRoute(info[0], int.Parse(info[1]), Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
 								}
 							}
 						}

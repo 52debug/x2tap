@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
 using System.Windows.Forms;
 
 namespace x2tap.Forms
@@ -31,11 +25,35 @@ namespace x2tap.Forms
 			}
 			dns = dns.Trim();
 			TUNTAPDNSTextBox.Text = dns.Substring(0, dns.Length - 1);
+
+			TUNTAPUseCustomDNSCheckBox.Checked = Global.TUNTAP.UseCustomDNS;
 		}
 
 		private void SettingForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			Global.MainForm.Show();
+		}
+
+		private void GlobalBypassIPsButton_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void ControlButton_Click(object sender, EventArgs e)
+		{
+			Global.TUNTAP.Address = IPAddress.Parse(TUNTAPAddressTextBox.Text);
+			Global.TUNTAP.Netmask = IPAddress.Parse(TUNTAPNetmaskTextBox.Text);
+			Global.TUNTAP.Gateway = IPAddress.Parse(TUNTAPGatewayTextBox.Text);
+
+			Global.TUNTAP.DNS.Clear();
+			foreach (var ip in TUNTAPDNSTextBox.Text.Split(','))
+			{
+				Global.TUNTAP.DNS.Add(IPAddress.Parse(ip));
+			}
+
+			Global.TUNTAP.UseCustomDNS = TUNTAPUseCustomDNSCheckBox.Checked;
+
+			MessageBox.Show(Utils.MultiLanguage.Translate("Saved"), Utils.MultiLanguage.Translate("Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 	}
 }

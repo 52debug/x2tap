@@ -40,11 +40,13 @@
 			this.TUNTAPAddressTextBox = new System.Windows.Forms.TextBox();
 			this.ControlButton = new System.Windows.Forms.Button();
 			this.GlobalBypassIPsButton = new System.Windows.Forms.Button();
+			this.TUNTAPUseCustomDNSCheckBox = new System.Windows.Forms.CheckBox();
 			this.TUNTAPGroupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// TUNTAPGroupBox
 			// 
+			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPUseCustomDNSCheckBox);
 			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPDNSLabel);
 			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPDNSTextBox);
 			this.TUNTAPGroupBox.Controls.Add(this.label1);
@@ -55,7 +57,7 @@
 			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPAddressTextBox);
 			this.TUNTAPGroupBox.Location = new System.Drawing.Point(12, 12);
 			this.TUNTAPGroupBox.Name = "TUNTAPGroupBox";
-			this.TUNTAPGroupBox.Size = new System.Drawing.Size(420, 140);
+			this.TUNTAPGroupBox.Size = new System.Drawing.Size(420, 162);
 			this.TUNTAPGroupBox.TabIndex = 0;
 			this.TUNTAPGroupBox.TabStop = false;
 			this.TUNTAPGroupBox.Text = "TUN/TAP";
@@ -130,27 +132,39 @@
 			// 
 			// ControlButton
 			// 
-			this.ControlButton.Location = new System.Drawing.Point(357, 158);
+			this.ControlButton.Location = new System.Drawing.Point(357, 180);
 			this.ControlButton.Name = "ControlButton";
 			this.ControlButton.Size = new System.Drawing.Size(75, 23);
 			this.ControlButton.TabIndex = 1;
 			this.ControlButton.Text = "Save";
 			this.ControlButton.UseVisualStyleBackColor = true;
+			this.ControlButton.Click += new System.EventHandler(this.ControlButton_Click);
 			// 
 			// GlobalBypassIPsButton
 			// 
-			this.GlobalBypassIPsButton.Location = new System.Drawing.Point(12, 158);
+			this.GlobalBypassIPsButton.Location = new System.Drawing.Point(12, 180);
 			this.GlobalBypassIPsButton.Name = "GlobalBypassIPsButton";
 			this.GlobalBypassIPsButton.Size = new System.Drawing.Size(128, 23);
 			this.GlobalBypassIPsButton.TabIndex = 2;
 			this.GlobalBypassIPsButton.Text = "Global Bypass IPs";
 			this.GlobalBypassIPsButton.UseVisualStyleBackColor = true;
+			this.GlobalBypassIPsButton.Click += new System.EventHandler(this.GlobalBypassIPsButton_Click);
+			// 
+			// TUNTAPUseCustomDNSCheckBox
+			// 
+			this.TUNTAPUseCustomDNSCheckBox.AutoSize = true;
+			this.TUNTAPUseCustomDNSCheckBox.Location = new System.Drawing.Point(287, 138);
+			this.TUNTAPUseCustomDNSCheckBox.Name = "TUNTAPUseCustomDNSCheckBox";
+			this.TUNTAPUseCustomDNSCheckBox.Size = new System.Drawing.Size(127, 21);
+			this.TUNTAPUseCustomDNSCheckBox.TabIndex = 8;
+			this.TUNTAPUseCustomDNSCheckBox.Text = "Use Custom DNS";
+			this.TUNTAPUseCustomDNSCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// SettingForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(444, 193);
+			this.ClientSize = new System.Drawing.Size(444, 215);
 			this.Controls.Add(this.GlobalBypassIPsButton);
 			this.Controls.Add(this.ControlButton);
 			this.Controls.Add(this.TUNTAPGroupBox);
@@ -183,5 +197,6 @@
 		private System.Windows.Forms.TextBox TUNTAPDNSTextBox;
 		private System.Windows.Forms.Button ControlButton;
 		private System.Windows.Forms.Button GlobalBypassIPsButton;
+		private System.Windows.Forms.CheckBox TUNTAPUseCustomDNSCheckBox;
 	}
 }
