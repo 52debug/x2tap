@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace x2tap.Controllers
 {
-	public class SSRController
+	public class SRController
 	{
 		/// <summary>
 		///		进程实例（ShadowsocksR）
@@ -81,6 +81,9 @@ namespace x2tap.Controllers
 			return false;
 		}
 
+		/// <summary>
+		///		停止
+		/// </summary>
 		public void Stop()
 		{
 			if (!Instance.HasExited)

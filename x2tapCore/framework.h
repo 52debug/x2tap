@@ -11,4 +11,4 @@
 
 using namespace std;
 
-#define STDCALL __stdcall
+#define DLLEXPORT extern "C" __declspec(dllexport)

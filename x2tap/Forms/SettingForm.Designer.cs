@@ -30,16 +30,14 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingForm));
 			this.TUNTAPGroupBox = new System.Windows.Forms.GroupBox();
-			this.TUNTAPAddressTextBox = new System.Windows.Forms.TextBox();
-			this.TUNTAPAddressLabel = new System.Windows.Forms.Label();
-			this.TUNTAPNetmaskTextBox = new System.Windows.Forms.TextBox();
-			this.TUNTAPNetmaskLabel = new System.Windows.Forms.Label();
-			this.TUNTAPGatewayTextBox = new System.Windows.Forms.TextBox();
+			this.TUNTAPDNSLabel = new System.Windows.Forms.Label();
+			this.TUNTAPDNSTextBox = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.TUNTAPDNS1TextBox = new System.Windows.Forms.TextBox();
-			this.TUNTAPDNS1Label = new System.Windows.Forms.Label();
-			this.TUNTAPDNS2TextBox = new System.Windows.Forms.TextBox();
-			this.TUNTAPDNS2Label = new System.Windows.Forms.Label();
+			this.TUNTAPGatewayTextBox = new System.Windows.Forms.TextBox();
+			this.TUNTAPNetmaskLabel = new System.Windows.Forms.Label();
+			this.TUNTAPNetmaskTextBox = new System.Windows.Forms.TextBox();
+			this.TUNTAPAddressLabel = new System.Windows.Forms.Label();
+			this.TUNTAPAddressTextBox = new System.Windows.Forms.TextBox();
 			this.ControlButton = new System.Windows.Forms.Button();
 			this.GlobalBypassIPsButton = new System.Windows.Forms.Button();
 			this.TUNTAPGroupBox.SuspendLayout();
@@ -47,10 +45,8 @@
 			// 
 			// TUNTAPGroupBox
 			// 
-			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPDNS2Label);
-			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPDNS2TextBox);
-			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPDNS1Label);
-			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPDNS1TextBox);
+			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPDNSLabel);
+			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPDNSTextBox);
 			this.TUNTAPGroupBox.Controls.Add(this.label1);
 			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPGatewayTextBox);
 			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPNetmaskLabel);
@@ -59,52 +55,27 @@
 			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPAddressTextBox);
 			this.TUNTAPGroupBox.Location = new System.Drawing.Point(12, 12);
 			this.TUNTAPGroupBox.Name = "TUNTAPGroupBox";
-			this.TUNTAPGroupBox.Size = new System.Drawing.Size(420, 169);
+			this.TUNTAPGroupBox.Size = new System.Drawing.Size(420, 140);
 			this.TUNTAPGroupBox.TabIndex = 0;
 			this.TUNTAPGroupBox.TabStop = false;
 			this.TUNTAPGroupBox.Text = "TUN/TAP";
 			// 
-			// TUNTAPAddressTextBox
+			// TUNTAPDNSLabel
 			// 
-			this.TUNTAPAddressTextBox.Location = new System.Drawing.Point(120, 22);
-			this.TUNTAPAddressTextBox.Name = "TUNTAPAddressTextBox";
-			this.TUNTAPAddressTextBox.Size = new System.Drawing.Size(294, 23);
-			this.TUNTAPAddressTextBox.TabIndex = 0;
-			this.TUNTAPAddressTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.TUNTAPDNSLabel.AutoSize = true;
+			this.TUNTAPDNSLabel.Location = new System.Drawing.Point(9, 112);
+			this.TUNTAPDNSLabel.Name = "TUNTAPDNSLabel";
+			this.TUNTAPDNSLabel.Size = new System.Drawing.Size(34, 17);
+			this.TUNTAPDNSLabel.TabIndex = 7;
+			this.TUNTAPDNSLabel.Text = "DNS";
 			// 
-			// TUNTAPAddressLabel
+			// TUNTAPDNSTextBox
 			// 
-			this.TUNTAPAddressLabel.AutoSize = true;
-			this.TUNTAPAddressLabel.Location = new System.Drawing.Point(9, 25);
-			this.TUNTAPAddressLabel.Name = "TUNTAPAddressLabel";
-			this.TUNTAPAddressLabel.Size = new System.Drawing.Size(56, 17);
-			this.TUNTAPAddressLabel.TabIndex = 1;
-			this.TUNTAPAddressLabel.Text = "Address";
-			// 
-			// TUNTAPNetmaskTextBox
-			// 
-			this.TUNTAPNetmaskTextBox.Location = new System.Drawing.Point(120, 51);
-			this.TUNTAPNetmaskTextBox.Name = "TUNTAPNetmaskTextBox";
-			this.TUNTAPNetmaskTextBox.Size = new System.Drawing.Size(294, 23);
-			this.TUNTAPNetmaskTextBox.TabIndex = 2;
-			this.TUNTAPNetmaskTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-			// 
-			// TUNTAPNetmaskLabel
-			// 
-			this.TUNTAPNetmaskLabel.AutoSize = true;
-			this.TUNTAPNetmaskLabel.Location = new System.Drawing.Point(9, 54);
-			this.TUNTAPNetmaskLabel.Name = "TUNTAPNetmaskLabel";
-			this.TUNTAPNetmaskLabel.Size = new System.Drawing.Size(60, 17);
-			this.TUNTAPNetmaskLabel.TabIndex = 3;
-			this.TUNTAPNetmaskLabel.Text = "Netmask";
-			// 
-			// TUNTAPGatewayTextBox
-			// 
-			this.TUNTAPGatewayTextBox.Location = new System.Drawing.Point(120, 80);
-			this.TUNTAPGatewayTextBox.Name = "TUNTAPGatewayTextBox";
-			this.TUNTAPGatewayTextBox.Size = new System.Drawing.Size(294, 23);
-			this.TUNTAPGatewayTextBox.TabIndex = 4;
-			this.TUNTAPGatewayTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.TUNTAPDNSTextBox.Location = new System.Drawing.Point(120, 109);
+			this.TUNTAPDNSTextBox.Name = "TUNTAPDNSTextBox";
+			this.TUNTAPDNSTextBox.Size = new System.Drawing.Size(294, 23);
+			this.TUNTAPDNSTextBox.TabIndex = 6;
+			this.TUNTAPDNSTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// label1
 			// 
@@ -115,43 +86,51 @@
 			this.label1.TabIndex = 5;
 			this.label1.Text = "Gateway";
 			// 
-			// TUNTAPDNS1TextBox
+			// TUNTAPGatewayTextBox
 			// 
-			this.TUNTAPDNS1TextBox.Location = new System.Drawing.Point(120, 109);
-			this.TUNTAPDNS1TextBox.Name = "TUNTAPDNS1TextBox";
-			this.TUNTAPDNS1TextBox.Size = new System.Drawing.Size(294, 23);
-			this.TUNTAPDNS1TextBox.TabIndex = 6;
-			this.TUNTAPDNS1TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.TUNTAPGatewayTextBox.Location = new System.Drawing.Point(120, 80);
+			this.TUNTAPGatewayTextBox.Name = "TUNTAPGatewayTextBox";
+			this.TUNTAPGatewayTextBox.Size = new System.Drawing.Size(294, 23);
+			this.TUNTAPGatewayTextBox.TabIndex = 4;
+			this.TUNTAPGatewayTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
-			// TUNTAPDNS1Label
+			// TUNTAPNetmaskLabel
 			// 
-			this.TUNTAPDNS1Label.AutoSize = true;
-			this.TUNTAPDNS1Label.Location = new System.Drawing.Point(9, 112);
-			this.TUNTAPDNS1Label.Name = "TUNTAPDNS1Label";
-			this.TUNTAPDNS1Label.Size = new System.Drawing.Size(45, 17);
-			this.TUNTAPDNS1Label.TabIndex = 7;
-			this.TUNTAPDNS1Label.Text = "DNS 1";
+			this.TUNTAPNetmaskLabel.AutoSize = true;
+			this.TUNTAPNetmaskLabel.Location = new System.Drawing.Point(9, 54);
+			this.TUNTAPNetmaskLabel.Name = "TUNTAPNetmaskLabel";
+			this.TUNTAPNetmaskLabel.Size = new System.Drawing.Size(60, 17);
+			this.TUNTAPNetmaskLabel.TabIndex = 3;
+			this.TUNTAPNetmaskLabel.Text = "Netmask";
 			// 
-			// TUNTAPDNS2TextBox
+			// TUNTAPNetmaskTextBox
 			// 
-			this.TUNTAPDNS2TextBox.Location = new System.Drawing.Point(120, 138);
-			this.TUNTAPDNS2TextBox.Name = "TUNTAPDNS2TextBox";
-			this.TUNTAPDNS2TextBox.Size = new System.Drawing.Size(294, 23);
-			this.TUNTAPDNS2TextBox.TabIndex = 8;
-			this.TUNTAPDNS2TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.TUNTAPNetmaskTextBox.Location = new System.Drawing.Point(120, 51);
+			this.TUNTAPNetmaskTextBox.Name = "TUNTAPNetmaskTextBox";
+			this.TUNTAPNetmaskTextBox.Size = new System.Drawing.Size(294, 23);
+			this.TUNTAPNetmaskTextBox.TabIndex = 2;
+			this.TUNTAPNetmaskTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
-			// TUNTAPDNS2Label
+			// TUNTAPAddressLabel
 			// 
-			this.TUNTAPDNS2Label.AutoSize = true;
-			this.TUNTAPDNS2Label.Location = new System.Drawing.Point(9, 141);
-			this.TUNTAPDNS2Label.Name = "TUNTAPDNS2Label";
-			this.TUNTAPDNS2Label.Size = new System.Drawing.Size(45, 17);
-			this.TUNTAPDNS2Label.TabIndex = 9;
-			this.TUNTAPDNS2Label.Text = "DNS 2";
+			this.TUNTAPAddressLabel.AutoSize = true;
+			this.TUNTAPAddressLabel.Location = new System.Drawing.Point(9, 25);
+			this.TUNTAPAddressLabel.Name = "TUNTAPAddressLabel";
+			this.TUNTAPAddressLabel.Size = new System.Drawing.Size(56, 17);
+			this.TUNTAPAddressLabel.TabIndex = 1;
+			this.TUNTAPAddressLabel.Text = "Address";
+			// 
+			// TUNTAPAddressTextBox
+			// 
+			this.TUNTAPAddressTextBox.Location = new System.Drawing.Point(120, 22);
+			this.TUNTAPAddressTextBox.Name = "TUNTAPAddressTextBox";
+			this.TUNTAPAddressTextBox.Size = new System.Drawing.Size(294, 23);
+			this.TUNTAPAddressTextBox.TabIndex = 0;
+			this.TUNTAPAddressTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// ControlButton
 			// 
-			this.ControlButton.Location = new System.Drawing.Point(357, 187);
+			this.ControlButton.Location = new System.Drawing.Point(357, 158);
 			this.ControlButton.Name = "ControlButton";
 			this.ControlButton.Size = new System.Drawing.Size(75, 23);
 			this.ControlButton.TabIndex = 1;
@@ -160,7 +139,7 @@
 			// 
 			// GlobalBypassIPsButton
 			// 
-			this.GlobalBypassIPsButton.Location = new System.Drawing.Point(12, 187);
+			this.GlobalBypassIPsButton.Location = new System.Drawing.Point(12, 158);
 			this.GlobalBypassIPsButton.Name = "GlobalBypassIPsButton";
 			this.GlobalBypassIPsButton.Size = new System.Drawing.Size(128, 23);
 			this.GlobalBypassIPsButton.TabIndex = 2;
@@ -171,7 +150,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(444, 222);
+			this.ClientSize = new System.Drawing.Size(444, 193);
 			this.Controls.Add(this.GlobalBypassIPsButton);
 			this.Controls.Add(this.ControlButton);
 			this.Controls.Add(this.TUNTAPGroupBox);
@@ -183,6 +162,8 @@
 			this.Name = "SettingForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Settings";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingForm_FormClosing);
+			this.Load += new System.EventHandler(this.SettingForm_Load);
 			this.TUNTAPGroupBox.ResumeLayout(false);
 			this.TUNTAPGroupBox.PerformLayout();
 			this.ResumeLayout(false);
@@ -198,10 +179,8 @@
 		private System.Windows.Forms.Label TUNTAPNetmaskLabel;
 		private System.Windows.Forms.TextBox TUNTAPGatewayTextBox;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label TUNTAPDNS1Label;
-		private System.Windows.Forms.TextBox TUNTAPDNS1TextBox;
-		private System.Windows.Forms.TextBox TUNTAPDNS2TextBox;
-		private System.Windows.Forms.Label TUNTAPDNS2Label;
+		private System.Windows.Forms.Label TUNTAPDNSLabel;
+		private System.Windows.Forms.TextBox TUNTAPDNSTextBox;
 		private System.Windows.Forms.Button ControlButton;
 		private System.Windows.Forms.Button GlobalBypassIPsButton;
 	}

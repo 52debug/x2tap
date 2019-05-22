@@ -29,7 +29,7 @@ namespace x2tap.Controllers
 		/// <summary>
 		///		SSR 控制器
 		/// </summary>
-		public SSRController SSRController;
+		public SRController SRController;
 
 		/// <summary>
 		///		启动
@@ -48,8 +48,8 @@ namespace x2tap.Controllers
 			}
 			else if (server.Type == "ShadowsocksR")
 			{
-				SSRController = new SSRController();
-				if (!SSRController.Start(server))
+				SRController = new SRController();
+				if (!SRController.Start(server))
 				{
 					return false;
 				}
@@ -75,7 +75,7 @@ namespace x2tap.Controllers
 
 			if (server.Type == "Socks5")
 			{
-				Instance.StartInfo.Arguments = String.Format("-fakeDns -proxyServer {0}:{1} -tunAddr {2} -tunMask {3} -tunGw {4} -tunDns {5}", server.Address, server.Port, Global.TUNTAP.Address, Global.TUNTAP.Netmask, Global.TUNTAP.Gateway, dns);
+				Instance.StartInfo.Arguments = String.Format("-proxyServer {0}:{1} -tunAddr {2} -tunMask {3} -tunGw {4} -tunDns {5}", server.Address, server.Port, Global.TUNTAP.Address, Global.TUNTAP.Netmask, Global.TUNTAP.Gateway, dns);
 			}
 			else if (server.Type == "VMess")
 			{
@@ -192,7 +192,7 @@ namespace x2tap.Controllers
 			}
 			else
 			{
-				Instance.StartInfo.Arguments = String.Format("-fakeDns -proxyServer 127.0.0.1:2810 -tunAddr {0} -tunMask {1} -tunGw {2} -tunDns {3}", Global.TUNTAP.Address, Global.TUNTAP.Netmask, Global.TUNTAP.Gateway, dns);
+				Instance.StartInfo.Arguments = String.Format("-proxyServer 127.0.0.1:2810 -tunAddr {0} -tunMask {1} -tunGw {2} -tunDns {3}", Global.TUNTAP.Address, Global.TUNTAP.Netmask, Global.TUNTAP.Gateway, dns);
 			}
 
 			Instance.StartInfo.CreateNoWindow = true;
@@ -226,6 +226,9 @@ namespace x2tap.Controllers
 			return false;
 		}
 
+		/// <summary>
+		///		停止
+		/// </summary>
 		public void Stop()
 		{
 			if (Instance != null && !Instance.HasExited)
@@ -238,9 +241,9 @@ namespace x2tap.Controllers
 				SSController.Stop();
 			}
 
-			if (SSRController != null)
+			if (SRController != null)
 			{
-				SSRController.Stop();
+				SRController.Stop();
 			}
 		}
 

@@ -20,34 +20,29 @@ MIB_IPFORWARD_ROW2 GetRoute(const char* address, int netmask, const char* gatewa
 	row.DestinationPrefix.Prefix.si_family = row.NextHop.si_family = AF_INET;
 	row.DestinationPrefix.Prefix.Ipv4.sin_addr.S_un.S_addr = inet_addr(address);
 	row.DestinationPrefix.PrefixLength = netmask;
-
-	if (gateway != "")
-	{
-		row.NextHop.Ipv4.sin_addr.S_un.S_addr = inet_addr(gateway);
-	}
-
+	row.NextHop.Ipv4.sin_addr.S_un.S_addr = inet_addr(gateway);
 	row.ValidLifetime = 0xffffffff;
 	row.PreferredLifetime = 0xffffffff;
 	row.Metric = metric;
-	row.Protocol = MIB_IPPROTO_NETMGMT;
+	row.Protocol = MIB_IPPROTO_OTHER;
 
 	return row;
 }
 
 // 创建路由规则
-BOOL STDCALL CreateRoute(const char* address, int netmask, const char* gateway, int index, int metric = 100)
+DLLEXPORT BOOL CreateRoute(const char* address, int netmask, const char* gateway, int index, int metric = 0)
 {
 	return (CreateIpForwardEntry2(&GetRoute(address, netmask, gateway, index, metric)) == NO_ERROR) ? TRUE : FALSE;
 }
 
 // 修改路由规则
-BOOL STDCALL ChangeRoute(const char* address, int netmask, const char* gateway, int index, int metric)
+DLLEXPORT BOOL ChangeRoute(const char* address, int netmask, const char* gateway, int index, int metric = 0)
 {
 	return (SetIpForwardEntry2(&GetRoute(address, netmask, gateway, index, metric)) == NO_ERROR) ? TRUE : FALSE;
 }
 
 // 删除路由规则
-BOOL STDCALL DeleteRoute(const char* address, int netmask, const char* gateway, int index, int metric = 100)
+DLLEXPORT BOOL DeleteRoute(const char* address, int netmask, const char* gateway, int index, int metric = 0)
 {
-	return (DeleteIpForwardEntry2(&GetRoute(address, netmask, gateway, index, metric)) == NO_ERROR) ? TRUE : FALSE;
+	return (DeleteIpForwardEntry2(&GetRoute(address, netmask, gateway, index, -1)) == NO_ERROR) ? TRUE : FALSE;
 }

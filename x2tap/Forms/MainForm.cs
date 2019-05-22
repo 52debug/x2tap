@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Net;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +16,11 @@ namespace x2tap.Forms
 		///		当前状态
 		/// </summary>
 		public Objects.State State = Objects.State.Waiting;
+
+		/// <summary>
+		///		服务器 IP 地址
+		/// </summary>
+		public IPAddress[] ServerAddresses;
 
 		/// <summary>
 		///		TUN/TAP 控制器
@@ -138,6 +145,8 @@ namespace x2tap.Forms
 			UplinkLabel.Text = $"↑{Utils.MultiLanguage.Translate(": ")}0KB/s";
 			DownlinkLabel.Text = $"↓{Utils.MultiLanguage.Translate(": ")}0KB/s";
 			StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Waiting for command");
+
+			Utils.Configuration.SearchOutbounds();
 
 			// 加载服务器列表
 			InitServers();
@@ -354,7 +363,8 @@ namespace x2tap.Forms
 
 		private void SettingsButton_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show(Utils.MultiLanguage.Translate("Waiting to add this feature"), Utils.MultiLanguage.Translate("Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+			new SettingForm().Show();
+			Hide();
 		}
 
 		private void ControlButton_Click(object sender, EventArgs e)
@@ -371,30 +381,90 @@ namespace x2tap.Forms
 
 					Task.Run(() =>
 					{
-						try
-						{
-							var item = ServerComboBox.SelectedItem as Objects.Server;
+						var server = ServerComboBox.SelectedItem as Objects.Server;
+						var mode = ModeComboBox.SelectedItem as Objects.Mode;
 
-							TUNTAPController = new Controllers.TUNTAPController();
-							if (!TUNTAPController.Start(ServerComboBox.SelectedItem as Objects.Server))
+						var destination = Dns.GetHostAddressesAsync(server.Address);
+						if (destination.Wait(1000))
+						{
+							if (destination.Result.Length == 0)
 							{
 								State = Objects.State.Stopped;
-								StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Starting instance failed");
+								StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Resolve server IP failed");
 								ControlButton.Text = Utils.MultiLanguage.Translate("Start");
 								ControlButton.Enabled = true;
 								ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
 								return;
 							}
 
-							State = Objects.State.Started;
-							StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Started");
-							ControlButton.Text = Utils.MultiLanguage.Translate("Stop");
-							ControlButton.Enabled = true;
+							ServerAddresses = destination.Result;
 						}
-						catch (Exception ex)
+
+						TUNTAPController = new Controllers.TUNTAPController();
+						if (TUNTAPController.Start(ServerComboBox.SelectedItem as Objects.Server))
 						{
-							MessageBox.Show(ex.ToString(), Utils.MultiLanguage.Translate("Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+							TUNTAPController.Instance.Exited += OnExited;
+
+							if (server.Type == "Shadowsocks")
+							{
+								TUNTAPController.SSController.Instance.Exited += OnExited;
+							}
+							else if (server.Type == "ShadowsocksR")
+							{
+								TUNTAPController.SRController.Instance.Exited += OnExited;
+							}
 						}
+						else
+						{
+							State = Objects.State.Stopped;
+							StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Starting failed");
+							ControlButton.Text = Utils.MultiLanguage.Translate("Start");
+							ControlButton.Enabled = true;
+							ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
+							return;
+						}
+
+						foreach (var address in ServerAddresses)
+						{
+							NativeMethods.CreateRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
+						}
+
+						if (mode.BypassChina)
+						{
+							using (var sr = new StringReader(Encoding.UTF8.GetString(Properties.Resources.CNIP)))
+							{
+								string text;
+
+								while ((text = sr.ReadLine()) != null)
+								{
+									var info = text.Split('/');
+
+									NativeMethods.CreateRoute(info[0], int.Parse(info[1]), Global.Adapter.Gateway.ToString(), Global.TUNTAP.Index);
+								}
+							}
+						}
+
+						if (!NativeMethods.CreateRoute("0.0.0.0", 0, Global.TUNTAP.Gateway.ToString(), Global.TUNTAP.Index, 10))
+						{
+							State = Objects.State.Stopped;
+
+							foreach (var address in ServerAddresses)
+							{
+								NativeMethods.DeleteRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
+							}
+
+							TUNTAPController.Stop();
+							StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Setting route table failed");
+							ControlButton.Text = Utils.MultiLanguage.Translate("Start");
+							ControlButton.Enabled = true;
+							ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
+							return;
+						}
+
+						State = Objects.State.Started;
+						StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Started");
+						ControlButton.Text = Utils.MultiLanguage.Translate("Stop");
+						ControlButton.Enabled = true;
 					});
 				}
 				else
@@ -403,9 +473,32 @@ namespace x2tap.Forms
 
 					Task.Run(() =>
 					{
-						var item = ServerComboBox.SelectedItem as Objects.Server;
+						var server = ServerComboBox.SelectedItem as Objects.Server;
+						var mode = ModeComboBox.SelectedItem as Objects.Mode;
 
 						TUNTAPController.Stop();
+
+						NativeMethods.DeleteRoute("0.0.0.0", 0, Global.TUNTAP.Gateway.ToString(), Global.TUNTAP.Index, 10);
+
+						if (mode.BypassChina)
+						{
+							using (var sr = new StringReader(Encoding.UTF8.GetString(Properties.Resources.CNIP)))
+							{
+								string text;
+
+								while ((text = sr.ReadLine()) != null)
+								{
+									var info = text.Split('/');
+
+									NativeMethods.DeleteRoute(info[0], int.Parse(info[1]), Global.Adapter.Gateway.ToString(), Global.TUNTAP.Index);
+								}
+							}
+						}
+
+						foreach (var address in ServerAddresses)
+						{
+							NativeMethods.DeleteRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
+						}
 
 						State = Objects.State.Stopped;
 						StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Stopped");

@@ -1,0 +1,5 @@
+[Generic]
+Address = 10.0.236.10
+Netmask = 255.255.255.0
+Gateway = 10.0.236.1
+DNS = 8.8.8.8

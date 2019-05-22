@@ -67,7 +67,6 @@ namespace x2tap.Controllers
 		/// <summary>
 		///		停止
 		/// </summary>
-		/// <returns>是否成功</returns>
 		public void Stop()
 		{
 			if (!Instance.HasExited)

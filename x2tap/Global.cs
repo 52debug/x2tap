@@ -173,7 +173,7 @@ namespace x2tap
 			/// <summary>
 			///		索引
 			/// </summary>
-			public static int Index = 0;
+			public static int Index = -1;
 
 			/// <summary>
 			///		地址
@@ -194,17 +194,12 @@ namespace x2tap
 			/// <summary>
 			///		索引
 			/// </summary>
-			public static int Index = 0;
+			public static int Index = -1;
 
 			/// <summary>
 			///		组件 ID
 			/// </summary>
 			public static string ComponentID = String.Empty;
-
-			/// <summary>
-			///		名称
-			/// </summary>
-			public static string Name = String.Empty;
 
 			/// <summary>
 			///		地址
@@ -226,13 +221,13 @@ namespace x2tap
 			/// </summary>
 			public static List<IPAddress> DNS = new List<IPAddress>()
 			{
-				IPAddress.Parse("1.2.4.8")
+				IPAddress.Parse("8.8.8.8")
 			};
 
 			/// <summary>
 			///		使用自定义 DNS 设置
 			/// </summary>
-			public static bool UseCustomDNS;
+			public static bool UseCustomDNS = false;
 		}
 	}
 }

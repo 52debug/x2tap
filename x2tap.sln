@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "x2tap", "x2tap\x2tap.csproj", "{65CDE3D3-D115-4CF9-8862-1A886E313E6D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6DB73965-BC83-4959-B5DB-FD794068DFE0} = {6DB73965-BC83-4959-B5DB-FD794068DFE0}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "x2tapCore", "x2tapCore\x2tapCore.vcxproj", "{6DB73965-BC83-4959-B5DB-FD794068DFE0}"
 EndProject
