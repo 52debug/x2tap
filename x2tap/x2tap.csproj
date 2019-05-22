@@ -94,7 +94,6 @@
     <Compile Include="Controllers\SSController.cs" />
     <Compile Include="Controllers\SRController.cs" />
     <Compile Include="Controllers\TUNTAPController.cs" />
-    <Compile Include="Controllers\V2RayController.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
