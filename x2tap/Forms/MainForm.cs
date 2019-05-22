@@ -16,19 +16,9 @@ namespace x2tap.Forms
 		public Objects.State State = Objects.State.Waiting;
 
 		/// <summary>
-		///		SS 控制器
+		///		TUN/TAP 控制器
 		/// </summary>
-		public Controllers.SSController SSController;
-
-		/// <summary>
-		///		SSR 控制器
-		/// </summary>
-		public Controllers.SSRController SSRController;
-
-		/// <summary>
-		///		V2Ray 控制器
-		/// </summary>
-		public Controllers.V2RayController V2RayController;
+		public Controllers.TUNTAPController TUNTAPController;
 
 		public MainForm()
 		{
@@ -153,7 +143,7 @@ namespace x2tap.Forms
 			InitServers();
 
 			// 添加模式：绕过局域网和中国
-			ModeComboBox.Items.Add(new Objects.Mode()
+			Global.Modes.Add(new Objects.Mode()
 			{
 				Name = Utils.MultiLanguage.Translate("Bypass LAN and China"),
 				IsInternal = true,
@@ -162,7 +152,7 @@ namespace x2tap.Forms
 			});
 
 			// 添加模式：绕过局域网
-			ModeComboBox.Items.Add(new Objects.Mode()
+			Global.Modes.Add(new Objects.Mode()
 			{
 				Name = Utils.MultiLanguage.Translate("Bypass LAN"),
 				IsInternal = true,
@@ -385,56 +375,15 @@ namespace x2tap.Forms
 						{
 							var item = ServerComboBox.SelectedItem as Objects.Server;
 
-							//////////////////////////////////////////////////
-							/// 启动 Socks5 入口实例
-							//////////////////////////////////////////////////
-							if (item.Type == "Shadowsocks")
+							TUNTAPController = new Controllers.TUNTAPController();
+							if (!TUNTAPController.Start(ServerComboBox.SelectedItem as Objects.Server))
 							{
-								SSController = new Controllers.SSController();
-								if (SSController.Start(Global.Servers[ServerComboBox.SelectedIndex]))
-								{
-									SSController.Instance.Exited += OnExited;
-								}
-								else
-								{
-									State = Objects.State.Stopped;
-									StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Starting SS instance failed");
-									ControlButton.Text = Utils.MultiLanguage.Translate("Start");
-									ControlButton.Enabled = true;
-									ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
-								}
-							}
-							else if (item.Type == "ShadowsocksR")
-							{
-								SSRController = new Controllers.SSRController();
-								if (SSRController.Start(Global.Servers[ServerComboBox.SelectedIndex]))
-								{
-									SSRController.Instance.Exited += OnExited;
-								}
-								else
-								{
-									State = Objects.State.Stopped;
-									StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Starting SSR instance failed");
-									ControlButton.Text = Utils.MultiLanguage.Translate("Start");
-									ControlButton.Enabled = true;
-									ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
-								}
-							}
-							else if (item.Type == "VMess")
-							{
-								V2RayController = new Controllers.V2RayController();
-								if (V2RayController.Start(Global.Servers[ServerComboBox.SelectedIndex]))
-								{
-									V2RayController.Instance.Exited += OnExited;
-								}
-								else
-								{
-									State = Objects.State.Stopped;
-									StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Starting V2Ray instance failed");
-									ControlButton.Text = Utils.MultiLanguage.Translate("Start");
-									ControlButton.Enabled = true;
-									ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
-								}
+								State = Objects.State.Stopped;
+								StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Starting instance failed");
+								ControlButton.Text = Utils.MultiLanguage.Translate("Start");
+								ControlButton.Enabled = true;
+								ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
+								return;
 							}
 
 							State = Objects.State.Started;
@@ -456,18 +405,7 @@ namespace x2tap.Forms
 					{
 						var item = ServerComboBox.SelectedItem as Objects.Server;
 
-						if (item.Type == "Shadowsocks")
-						{
-							SSController.Stop();
-						}
-						else if (item.Type == "ShadowsocksR")
-						{
-							SSRController.Stop();
-						}
-						else if (item.Type == "VMess")
-						{
-							V2RayController.Stop();
-						}
+						TUNTAPController.Stop();
 
 						State = Objects.State.Stopped;
 						StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Stopped");
@@ -478,7 +416,7 @@ namespace x2tap.Forms
 			}
 			else
 			{
-				MessageBox.Show(Utils.MultiLanguage.Translate("Waiting to add this feature"), Utils.MultiLanguage.Translate("Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show(Utils.MultiLanguage.Translate("Please select an server"), Utils.MultiLanguage.Translate("Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 		}
 

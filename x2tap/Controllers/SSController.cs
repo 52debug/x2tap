@@ -53,7 +53,8 @@ namespace x2tap.Controllers
 				{
 					return true;
 				}
-				else if (State == Objects.State.Stopped)
+
+				if (State == Objects.State.Stopped)
 				{
 					Stop();
 					return false;
@@ -79,7 +80,7 @@ namespace x2tap.Controllers
 
 		public void OnOutputDataReceived(object sender, DataReceivedEventArgs e)
 		{
-			if (e.Data != null)
+			if (!String.IsNullOrEmpty(e.Data))
 			{
 				File.AppendAllText("Logging\\shadowsocks.log", String.Format("{0}\r\n", e.Data.Trim()));
 

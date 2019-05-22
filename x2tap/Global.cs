@@ -209,22 +209,25 @@ namespace x2tap
 			/// <summary>
 			///		地址
 			/// </summary>
-			public static IPAddress Address;
+			public static IPAddress Address = IPAddress.Parse("10.0.236.10");
 
 			/// <summary>
 			///		掩码
 			/// </summary>
-			public static IPAddress Netmask;
+			public static IPAddress Netmask = IPAddress.Parse("255.255.255.0");
 
 			/// <summary>
 			///		网关
 			/// </summary>
-			public static IPAddress Gateway;
+			public static IPAddress Gateway = IPAddress.Parse("10.0.236.1");
 
 			/// <summary>
 			///		DNS
 			/// </summary>
-			public static List<IPAddress> DNS;
+			public static List<IPAddress> DNS = new List<IPAddress>()
+			{
+				IPAddress.Parse("1.2.4.8")
+			};
 
 			/// <summary>
 			///		使用自定义 DNS 设置

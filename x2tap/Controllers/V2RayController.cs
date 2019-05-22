@@ -189,7 +189,7 @@ namespace x2tap.Controllers
 
 		public void OnOutputDataReceived(object sender, DataReceivedEventArgs e)
 		{
-			if (e.Data != null)
+			if (!String.IsNullOrEmpty(e.Data))
 			{
 				File.AppendAllText("Logging\\v2ray.log", String.Format("{0}\r\n", e.Data.Trim()));
 
