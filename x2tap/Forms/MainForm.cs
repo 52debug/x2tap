@@ -480,28 +480,6 @@ namespace x2tap.Forms
 								TUNTAPController.Stop();
 							}
 
-							NativeMethods.DeleteRoute("0.0.0.0", 0, Global.TUNTAP.Gateway.ToString(), Global.TUNTAP.Index, 10);
-
-							if (mode.BypassChina)
-							{
-								using (var sr = new StringReader(Encoding.UTF8.GetString(Properties.Resources.CNIP)))
-								{
-									string text;
-
-									while ((text = sr.ReadLine()) != null)
-									{
-										var info = text.Split('/');
-
-										NativeMethods.DeleteRoute(info[0], int.Parse(info[1]), Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
-									}
-								}
-							}
-
-							foreach (var address in ServerAddresses)
-							{
-								NativeMethods.DeleteRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
-							}
-
 							StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Unknown error");
 							ControlButton.Text = Utils.MultiLanguage.Translate("Start");
 							ControlButton.Enabled = true;
