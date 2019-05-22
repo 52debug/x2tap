@@ -88,6 +88,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="3rd\SimpleJSON\SimpleJSON.cs" />
+    <Compile Include="Controllers\SSController.cs" />
+    <Compile Include="Controllers\SSRController.cs" />
+    <Compile Include="Controllers\TUNController.cs" />
+    <Compile Include="Controllers\V2RayController.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,14 +122,22 @@
     <Compile Include="Forms\Server\VMess.Designer.cs">
       <DependentUpon>VMess.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Objects\Information\DNS.cs" />
     <Compile Include="Objects\Information\Inbound.cs" />
+    <Compile Include="Objects\Information\Log.cs" />
     <Compile Include="Objects\Information\Main.cs" />
     <Compile Include="Objects\Information\Outbound.cs" />
     <Compile Include="Objects\Information\Protocol\Outbound\VMess.cs" />
     <Compile Include="Objects\Information\Routing.cs" />
+    <Compile Include="Objects\Information\SSR.cs" />
     <Compile Include="Objects\Mode.cs" />
     <Compile Include="Objects\Server.cs" />
     <Compile Include="Objects\State.cs" />
@@ -153,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Server\VMess.resx">
       <DependentUpon>VMess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SettingForm.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -790,4 +805,15 @@
     <None Include="Resources\v2ray.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>@ECHO OFF
+CD $(TargetDir)
+RD /S /Q Bin
+MKDIR Bin
+COPY /Y $(SolutionDir)\binaries\$(PlatformName)\*.dll $(TargetDir)\Bin\
+COPY /Y $(SolutionDir)\binaries\$(PlatformName)\*.exe $(TargetDir)\Bin\
+COPY /Y $(SolutionDir)\binaries\*.dat $(TargetDir)\Bin\
+COPY /Y $(SolutionDir)\binaries\*.dll $(TargetDir)\Bin\
+COPY /Y $(SolutionDir)\binaries\*.exe $(TargetDir)\Bin\</PreBuildEvent>
+  </PropertyGroup>
 </Project>

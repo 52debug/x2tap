@@ -13,42 +13,7 @@ namespace x2tap.Objects.Information
 	{
 		public string domainStrategy = "IPIfNonMatch";
 
-		public List<RoutingRule> rules = new List<RoutingRule>()
-		{
-			new RoutingRule()
-			{
-				ip = new List<string>()
-				{
-					"1.1.1.1"
-				},
-				outboundTag = "defaultOutbound"
-			},
-			new RoutingRule()
-			{
-				ip = new List<string>()
-				{
-					"1.2.4.8"
-				},
-				outboundTag = "directOutbound"
-			},
-			new RoutingRule()
-			{
-				domain = new List<string>()
-				{
-					"geosite:cn"
-				},
-				outboundTag = "directOutbound"
-			},
-			new RoutingRule()
-			{
-				ip = new List<string>()
-				{
-					"geoip:cn",
-					"geoip:private"
-				},
-				outboundTag = "directOutbound"
-			}
-		};
+		public List<RoutingRule> rules = new List<RoutingRule>();
 	}
 
 	public class RoutingRule

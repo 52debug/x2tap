@@ -15,6 +15,21 @@ namespace x2tap.Forms
 		/// </summary>
 		public Objects.State State = Objects.State.Waiting;
 
+		/// <summary>
+		///		SS 控制器
+		/// </summary>
+		public Controllers.SSController SSController;
+
+		/// <summary>
+		///		SSR 控制器
+		/// </summary>
+		public Controllers.SSRController SSRController;
+
+		/// <summary>
+		///		V2Ray 控制器
+		/// </summary>
+		public Controllers.V2RayController V2RayController;
+
 		public MainForm()
 		{
 			InitializeComponent();
@@ -102,9 +117,12 @@ namespace x2tap.Forms
 			Global.Servers.Add(new Objects.Server()
 			{
 				Remark = "N3RO 是最棒的！",
-				Type = "Socks5",
+				Type = "VMess",
 				Address = "www.baidu.com",
-				Port = 443
+				Port = 443,
+				UserID = Guid.NewGuid().ToString(),
+				AlterID = 0,
+				TransferProtocol = "tcp"
 			});
 
 			// 加载翻译
@@ -351,33 +369,124 @@ namespace x2tap.Forms
 
 		private void ControlButton_Click(object sender, EventArgs e)
 		{
-			ControlButton.Enabled = false;
-			StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(":") + Utils.MultiLanguage.Translate("Processing");
-
-			if (State == Objects.State.Waiting || State == Objects.State.Stopped)
+			if (ServerComboBox.SelectedIndex != -1)
 			{
-				State = Objects.State.Starting;
-				ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = false;
+				ControlButton.Enabled = false;
+				StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Processing");
 
-				Task.Run(() =>
+				if (State == Objects.State.Waiting || State == Objects.State.Stopped)
 				{
-					State = Objects.State.Started;
-					StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(":") + Utils.MultiLanguage.Translate("Started");
-					ControlButton.Text = Utils.MultiLanguage.Translate("Stop");
-					ControlButton.Enabled = true;
-				});
+					State = Objects.State.Starting;
+					ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = false;
+
+					Task.Run(() =>
+					{
+						try
+						{
+							var item = ServerComboBox.SelectedItem as Objects.Server;
+
+							//////////////////////////////////////////////////
+							/// 启动 Socks5 入口实例
+							//////////////////////////////////////////////////
+							if (item.Type == "Shadowsocks")
+							{
+								SSController = new Controllers.SSController();
+								if (SSController.Start(Global.Servers[ServerComboBox.SelectedIndex]))
+								{
+									SSController.Instance.Exited += OnExited;
+								}
+								else
+								{
+									State = Objects.State.Stopped;
+									StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Starting SS instance failed");
+									ControlButton.Text = Utils.MultiLanguage.Translate("Start");
+									ControlButton.Enabled = true;
+									ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
+								}
+							}
+							else if (item.Type == "ShadowsocksR")
+							{
+								SSRController = new Controllers.SSRController();
+								if (SSRController.Start(Global.Servers[ServerComboBox.SelectedIndex]))
+								{
+									SSRController.Instance.Exited += OnExited;
+								}
+								else
+								{
+									State = Objects.State.Stopped;
+									StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Starting SSR instance failed");
+									ControlButton.Text = Utils.MultiLanguage.Translate("Start");
+									ControlButton.Enabled = true;
+									ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
+								}
+							}
+							else if (item.Type == "VMess")
+							{
+								V2RayController = new Controllers.V2RayController();
+								if (V2RayController.Start(Global.Servers[ServerComboBox.SelectedIndex]))
+								{
+									V2RayController.Instance.Exited += OnExited;
+								}
+								else
+								{
+									State = Objects.State.Stopped;
+									StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Starting V2Ray instance failed");
+									ControlButton.Text = Utils.MultiLanguage.Translate("Start");
+									ControlButton.Enabled = true;
+									ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
+								}
+							}
+
+							State = Objects.State.Started;
+							StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Started");
+							ControlButton.Text = Utils.MultiLanguage.Translate("Stop");
+							ControlButton.Enabled = true;
+						}
+						catch (Exception ex)
+						{
+							MessageBox.Show(ex.ToString(), Utils.MultiLanguage.Translate("Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+						}
+					});
+				}
+				else
+				{
+					State = Objects.State.Stopping;
+
+					Task.Run(() =>
+					{
+						var item = ServerComboBox.SelectedItem as Objects.Server;
+
+						if (item.Type == "Shadowsocks")
+						{
+							SSController.Stop();
+						}
+						else if (item.Type == "ShadowsocksR")
+						{
+							SSRController.Stop();
+						}
+						else if (item.Type == "VMess")
+						{
+							V2RayController.Stop();
+						}
+
+						State = Objects.State.Stopped;
+						StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Stopped");
+						ControlButton.Text = Utils.MultiLanguage.Translate("Start");
+						ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = ControlButton.Enabled = true;
+					});
+				}
 			}
 			else
 			{
-				State = Objects.State.Stopping;
+				MessageBox.Show(Utils.MultiLanguage.Translate("Waiting to add this feature"), Utils.MultiLanguage.Translate("Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+		}
 
-				Task.Run(() =>
-				{
-					State = Objects.State.Stopped;
-					StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(":") + Utils.MultiLanguage.Translate("Stopped");
-					ControlButton.Text = Utils.MultiLanguage.Translate("Start");
-					ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = ControlButton.Enabled = true;
-				});
+		public void OnExited(object sender, EventArgs e)
+		{
+			if (State == Objects.State.Started)
+			{
+				ControlButton.PerformClick();
 			}
 		}
 	}

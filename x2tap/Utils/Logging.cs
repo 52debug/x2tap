@@ -18,7 +18,7 @@ namespace x2tap.Utils
 		/// <param name="text"></param>
 		public static void Info(string text)
 		{
-			File.AppendAllText("Logging\\Application.log", String.Format("[{0}][INFO] {1}\r\n", DateTime.Now.ToString(), text));
+			File.AppendAllText("Logging\\application.log", String.Format("[{0}][INFO] {1}\r\n", DateTime.Now.ToString(), text));
 		}
 	}
 }
