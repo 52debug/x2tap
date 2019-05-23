@@ -815,9 +815,12 @@
 CD $(TargetDir)
 RD /S /Q Bin &gt; NUL 2&gt;&amp;1
 MKDIR Bin &gt; NUL 2&gt;&amp;1
+RD /S /Q Mode &gt; NUL 2&gt;&amp;1
+MKDIR Mode &gt; NUL 2&gt;&amp;1
 COPY /Y $(SolutionDir)\binaries\$(PlatformName)\*.dll $(TargetDir)\Bin\ &gt; NUL 2&gt;&amp;1
 COPY /Y $(SolutionDir)\binaries\$(PlatformName)\*.exe $(TargetDir)\Bin\ &gt; NUL 2&gt;&amp;1
 COPY /Y $(SolutionDir)\binaries\*.dll $(TargetDir)\Bin\ &gt; NUL 2&gt;&amp;1
-COPY /Y $(SolutionDir)\binaries\*.exe $(TargetDir)\Bin\ &gt; NUL 2&gt;&amp;1</PreBuildEvent>
+COPY /Y $(SolutionDir)\binaries\*.exe $(TargetDir)\Bin\ &gt; NUL 2&gt;&amp;1
+COPY /Y $(SolutionDir)\modes\*.txt $(TargetDir)\Mode\ &gt; NUL 2&gt;&amp;1</PreBuildEvent>
   </PropertyGroup>
 </Project>

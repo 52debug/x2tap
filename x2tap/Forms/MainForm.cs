@@ -160,7 +160,7 @@ namespace x2tap.Forms
 			InitServers();
 
 			// 添加模式：绕过局域网和中国
-			Global.Modes.Add(new Objects.Mode()
+			Global.Modes.Insert(0, new Objects.Mode()
 			{
 				Name = Utils.MultiLanguage.Translate("Bypass LAN and China"),
 				IsInternal = true,
@@ -169,7 +169,7 @@ namespace x2tap.Forms
 			});
 
 			// 添加模式：绕过局域网
-			Global.Modes.Add(new Objects.Mode()
+			Global.Modes.Insert(1, new Objects.Mode()
 			{
 				Name = Utils.MultiLanguage.Translate("Bypass LAN"),
 				IsInternal = true,
@@ -438,6 +438,55 @@ namespace x2tap.Forms
 								}
 							}
 
+							if (mode.Type == 0) // 处理仅规则内走直连
+							{
+								// 创建默认路由
+								if (!NativeMethods.CreateRoute("0.0.0.0", 0, Global.TUNTAP.Gateway.ToString(), Global.TUNTAP.Index, 10))
+								{
+									State = Objects.State.Stopped;
+
+									foreach (var address in ServerAddresses)
+									{
+										NativeMethods.DeleteRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
+									}
+
+									TUNTAPController.Stop();
+									StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Setting route table failed");
+									ControlButton.Text = Utils.MultiLanguage.Translate("Start");
+									ControlButton.Enabled = true;
+									ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
+									return;
+								}
+								
+								foreach (var ip in mode.Rule)
+								{
+									var info = ip.Split('/');
+									
+									if (info.Length == 2)
+									{
+										if (int.TryParse(info[1], out var prefix))
+										{
+											NativeMethods.CreateRoute(info[0], prefix, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
+										}
+									}
+								}
+							}
+							else if (mode.Type == 1) // 处理仅规则内走代理
+							{
+								foreach (var ip in mode.Rule)
+								{
+									var info = ip.Split('/');
+
+									if (info.Length == 2)
+									{
+										if (int.TryParse(info[1], out var prefix))
+										{
+											NativeMethods.CreateRoute(info[0], prefix, Global.TUNTAP.Gateway.ToString(), Global.TUNTAP.Index);
+										}
+									}
+								}
+							}
+
 							// 处理模式的绕过中国
 							if (mode.BypassChina)
 							{
@@ -452,24 +501,6 @@ namespace x2tap.Forms
 										NativeMethods.CreateRoute(info[0], int.Parse(info[1]), Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
 									}
 								}
-							}
-
-							// 创建默认路由规则
-							if (!NativeMethods.CreateRoute("0.0.0.0", 0, Global.TUNTAP.Gateway.ToString(), Global.TUNTAP.Index, 10))
-							{
-								State = Objects.State.Stopped;
-
-								foreach (var address in ServerAddresses)
-								{
-									NativeMethods.DeleteRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
-								}
-
-								TUNTAPController.Stop();
-								StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Setting route table failed");
-								ControlButton.Text = Utils.MultiLanguage.Translate("Start");
-								ControlButton.Enabled = true;
-								ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
-								return;
 							}
 
 							// 设置状态：已启动
@@ -537,7 +568,38 @@ namespace x2tap.Forms
 
 						TUNTAPController.Stop();
 
-						NativeMethods.DeleteRoute("0.0.0.0", 0, Global.TUNTAP.Gateway.ToString(), Global.TUNTAP.Index, 10);
+						if (mode.Type == 0)
+						{
+							NativeMethods.DeleteRoute("0.0.0.0", 0, Global.TUNTAP.Gateway.ToString(), Global.TUNTAP.Index, 10);
+
+							foreach (var ip in mode.Rule)
+							{
+								var info = ip.Split('/');
+
+								if (info.Length == 2)
+								{
+									if (int.TryParse(info[1], out var prefix))
+									{
+										NativeMethods.DeleteRoute(info[0], prefix, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
+									}
+								}
+							}
+						}
+						else if (mode.Type == 1)
+						{
+							foreach (var ip in mode.Rule)
+							{
+								var info = ip.Split('/');
+
+								if (info.Length == 2)
+								{
+									if (int.TryParse(info[1], out var prefix))
+									{
+										NativeMethods.DeleteRoute(info[0], prefix, Global.TUNTAP.Gateway.ToString(), Global.TUNTAP.Index);
+									}
+								}
+							}
+						}
 
 						if (mode.BypassChina)
 						{

@@ -33,6 +33,12 @@ namespace x2tap
 				Directory.CreateDirectory("Data");
 			}
 
+			// 预先创建文件夹：模式
+			if (!Directory.Exists("Mode"))
+			{
+				Directory.CreateDirectory("Mode");
+			}
+
 			// 如果当前系统语言为中文，先从程序自带的资源中加载中文翻译
 			if (CultureInfo.InstalledUICulture.Name == "zh-CN")
 			{

@@ -60,6 +60,53 @@ namespace x2tap.Utils
 			{
 				Global.Servers = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Objects.Server>>(File.ReadAllText("Data\\Servers.json"));
 			}
+
+			foreach (var name in Directory.GetFiles("Mode", "*.txt"))
+			{
+				var mode = new Objects.Mode();
+
+				using (var sr = new StringReader(File.ReadAllText(name)))
+				{
+					var i = 0;
+					var ok = true;
+					string text;
+
+					while ((text = sr.ReadLine()) != null)
+					{
+						if (i == 0)
+						{
+							var splited = text.Substring(1).Split(',');
+							if (splited.Length == 3)
+							{
+								mode.Name = splited[0].Trim();
+								mode.Type = int.Parse(splited[1]);
+								mode.BypassChina = (int.Parse(splited[2]) == 1) ? true : false;
+							}
+							else
+							{
+								ok = false;
+								break;
+							}
+						}
+						else
+						{
+							if (!text.StartsWith("#"))
+							{
+								mode.Rule.Add(text.Trim());
+							}
+						}
+
+						i++;
+					}
+
+					if (!ok)
+					{
+						break;
+					}
+				}
+
+				Global.Modes.Add(mode);
+			}
 		}
 
 		/// <summary>
