@@ -59,7 +59,7 @@ namespace x2tap.Controllers
 			Instance.StartInfo.WorkingDirectory = String.Format("{0}\\Bin", Directory.GetCurrentDirectory());
 			Instance.StartInfo.FileName = String.Format("{0}\\Bin\\tun2socks.exe", Directory.GetCurrentDirectory());
 
-			var dns = "8.8.8.8";
+			var dns = "1.1.1.1";
 			if (Global.TUNTAP.UseCustomDNS)
 			{
 				dns = "";
@@ -71,6 +71,11 @@ namespace x2tap.Controllers
 
 				dns = dns.Trim();
 				dns = dns.Substring(0, dns.Length - 1);
+			}
+
+			if (Global.TUNTAP.UseFakeDNS)
+			{
+				dns = dns + " -fakeDns";
 			}
 
 			if (server.Type == "Socks5")
@@ -188,7 +193,7 @@ namespace x2tap.Controllers
 				data.outbounds.Add(outbound);
 				File.WriteAllText("Data\\Last.json", Newtonsoft.Json.JsonConvert.SerializeObject(data));
 
-				Instance.StartInfo.Arguments = String.Format("-vconfig \"{0}\" -tunAddr {1} -tunMask {2} -tunGw {3} -tunDns {4}", String.Format("{0}\\Data\\V2RayLast.json", Directory.GetCurrentDirectory()), Global.TUNTAP.Address, Global.TUNTAP.Netmask, Global.TUNTAP.Gateway, dns);
+				Instance.StartInfo.Arguments = String.Format("-proxyType v2ray -vconfig \"{0}\" -tunAddr {1} -tunMask {2} -tunGw {3} -tunDns {4}", String.Format("{0}\\Data\\Last.json", Directory.GetCurrentDirectory()), Global.TUNTAP.Address, Global.TUNTAP.Netmask, Global.TUNTAP.Gateway, dns);
 			}
 			else
 			{
@@ -259,7 +264,7 @@ namespace x2tap.Controllers
 					{
 						State = Objects.State.Started;
 					}
-					else if (e.Data.Contains("failed"))
+					else if (e.Data.Contains("failed") || e.Data.Contains("invalid vconfig file"))
 					{
 						State = Objects.State.Stopped;
 					}

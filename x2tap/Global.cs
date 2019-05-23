@@ -227,8 +227,13 @@ namespace x2tap
 			/// </summary>
 			public static List<IPAddress> DNS = new List<IPAddress>()
 			{
-				IPAddress.Parse("8.8.8.8")
+				IPAddress.Parse("1.1.1.1")
 			};
+
+			/// <summary>
+			///		使用伪装 DNS
+			/// </summary>
+			public static bool UseFakeDNS = false;
 
 			/// <summary>
 			///		使用自定义 DNS 设置

@@ -10,21 +10,7 @@ namespace x2tap.Objects.Information
 
 		public Routing routing = new Routing();
 
-		public List<Inbound> inbounds = new List<Inbound>()
-		{
-			new Inbound()
-			{
-				port = 1091,
-				protocol = "http",
-				tag = "defaultInbound"
-			},
-			new Inbound()
-			{
-				port = 1092,
-				protocol = "socks",
-				tag = "socksInbound"
-			}
-		};
+		public List<Inbound> inbounds = new List<Inbound>();
 
 		public List<Outbound> outbounds = new List<Outbound>();
 	}
