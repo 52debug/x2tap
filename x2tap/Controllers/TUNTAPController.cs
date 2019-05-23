@@ -95,14 +95,14 @@ namespace x2tap.Controllers
 						address = server.Address,
 						port = server.Port,
 						users = new List<Objects.Information.Protocol.Outbound.VMessUser>()
-					{
-						new Objects.Information.Protocol.Outbound.VMessUser()
 						{
-							id = server.UserID,
-							alterId = server.AlterID,
-							security = "auto"
+							new Objects.Information.Protocol.Outbound.VMessUser()
+							{
+								id = server.UserID,
+								alterId = server.AlterID,
+								security = "auto"
+							}
 						}
-					}
 					});
 
 					outbound.settings = settings;
@@ -123,9 +123,9 @@ namespace x2tap.Controllers
 										request = new Objects.Information.OutboundStreamTCPHTTPRequestHeader()
 										{
 											headers = new Dictionary<string, List<string>>()
-										{
-											{ "Host", new List<string>() { server.Host } }
-										}
+											{
+												{ "Host", new List<string>() { server.Host } }
+											}
 										}
 									}
 								};
@@ -136,9 +136,9 @@ namespace x2tap.Controllers
 							outbound.streamSettings.kcpSettings = new Objects.Information.OutboundStreamKCP()
 							{
 								header = new Dictionary<string, string>()
-							{
-								{ "type", server.FakeType }
-							}
+								{
+									{ "type", server.FakeType }
+								}
 							};
 							break;
 						case "ws":
@@ -172,9 +172,9 @@ namespace x2tap.Controllers
 							outbound.streamSettings.quicSettings = new Objects.Information.OutboundStreamQUIC()
 							{
 								header = new Dictionary<string, string>()
-							{
-								{ "type", server.FakeType }
-							},
+								{
+									{ "type", server.FakeType }
+								},
 								security = server.QUICSecurity,
 								key = server.QUICSecret
 							};
@@ -186,7 +186,7 @@ namespace x2tap.Controllers
 				}
 
 				data.outbounds.Add(outbound);
-				File.WriteAllText("Data\\V2RayLast.json", Newtonsoft.Json.JsonConvert.SerializeObject(data));
+				File.WriteAllText("Data\\Last.json", Newtonsoft.Json.JsonConvert.SerializeObject(data));
 
 				Instance.StartInfo.Arguments = String.Format("-vconfig \"{0}\" -tunAddr {1} -tunMask {2} -tunGw {3} -tunDns {4}", String.Format("{0}\\Data\\V2RayLast.json", Directory.GetCurrentDirectory()), Global.TUNTAP.Address, Global.TUNTAP.Netmask, Global.TUNTAP.Gateway, dns);
 			}

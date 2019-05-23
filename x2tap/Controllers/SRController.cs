@@ -34,7 +34,7 @@ namespace x2tap.Controllers
 				return false;
 			}
 
-			File.WriteAllText("Data\\SSRLast.json", Newtonsoft.Json.JsonConvert.SerializeObject(new Objects.Information.SSR()
+			File.WriteAllText("Data\\Last.json", Newtonsoft.Json.JsonConvert.SerializeObject(new Objects.Information.SSR()
 			{
 				server = server.Address,
 				server_port = server.Port,

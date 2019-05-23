@@ -72,6 +72,7 @@ namespace x2tap.Forms.Server
 			{
 				RemarkTextBox.Text = Global.Servers[Index].Remark;
 				AddressTextBox.Text = Global.Servers[Index].Address;
+				PortTextBox.Text = Global.Servers[Index].Port.ToString();
 				UserIDTextBox.Text = Global.Servers[Index].UserID;
 				AlterIDTextBox.Text = Global.Servers[Index].AlterID.ToString();
 				EncryptMethodComboBox.SelectedIndex = Global.EncryptMethods.VMess.IndexOf(Global.Servers[Index].EncryptMethod);
