@@ -432,7 +432,10 @@ namespace x2tap.Forms
 							// 让服务器 IP 走直连
 							foreach (var address in ServerAddresses)
 							{
-								NativeMethods.CreateRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
+								if (!IPAddress.IsLoopback(address))
+								{
+									NativeMethods.CreateRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
+								}
 							}
 
 							// 处理模式的绕过中国
@@ -553,7 +556,10 @@ namespace x2tap.Forms
 
 						foreach (var address in ServerAddresses)
 						{
-							NativeMethods.DeleteRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
+							if (!IPAddress.IsLoopback(address))
+							{
+								NativeMethods.DeleteRoute(address.ToString(), 32, Global.Adapter.Gateway.ToString(), Global.Adapter.Index);
+							}
 						}
 
 						State = Objects.State.Stopped;
