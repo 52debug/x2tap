@@ -492,7 +492,7 @@ namespace x2tap.Forms
 									}
 
 									UplinkLabel.Text = String.Format("↑{0}{1}/s", Utils.MultiLanguage.Translate(": "), Utils.Util.ComputeBandwidth(stats.BytesSent - UplinkBandwidth));
-									DownlinkLabel.Text = String.Format("↑{0}{1}/s", Utils.MultiLanguage.Translate(": "), Utils.Util.ComputeBandwidth(stats.BytesReceived - DownlinkBandwidth));
+									DownlinkLabel.Text = String.Format("↓{0}{1}/s", Utils.MultiLanguage.Translate(": "), Utils.Util.ComputeBandwidth(stats.BytesReceived - DownlinkBandwidth));
 									UsedBandwidthLabel.Text = String.Format("{0}{1}{2}", Utils.MultiLanguage.Translate("Used"), Utils.MultiLanguage.Translate(": "), Utils.Util.ComputeBandwidth(stats.BytesSent + stats.BytesReceived - LastUplinkBandwidth - LastDownlinkBandwidth));
 
 									UplinkBandwidth = stats.BytesSent;

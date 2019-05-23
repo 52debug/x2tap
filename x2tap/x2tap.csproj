@@ -813,11 +813,11 @@
   <PropertyGroup>
     <PreBuildEvent>@ECHO OFF
 CD $(TargetDir)
-RD /S /Q Bin
-MKDIR Bin
-COPY /Y $(SolutionDir)\binaries\$(PlatformName)\*.dll $(TargetDir)\Bin\
-COPY /Y $(SolutionDir)\binaries\$(PlatformName)\*.exe $(TargetDir)\Bin\
-COPY /Y $(SolutionDir)\binaries\*.dll $(TargetDir)\Bin\
-COPY /Y $(SolutionDir)\binaries\*.exe $(TargetDir)\Bin\</PreBuildEvent>
+RD /S /Q Bin &gt; NUL 2&gt;&amp;1
+MKDIR Bin &gt; NUL 2&gt;&amp;1
+COPY /Y $(SolutionDir)\binaries\$(PlatformName)\*.dll $(TargetDir)\Bin\ &gt; NUL 2&gt;&amp;1
+COPY /Y $(SolutionDir)\binaries\$(PlatformName)\*.exe $(TargetDir)\Bin\ &gt; NUL 2&gt;&amp;1
+COPY /Y $(SolutionDir)\binaries\*.dll $(TargetDir)\Bin\ &gt; NUL 2&gt;&amp;1
+COPY /Y $(SolutionDir)\binaries\*.exe $(TargetDir)\Bin\ &gt; NUL 2&gt;&amp;1</PreBuildEvent>
   </PropertyGroup>
 </Project>
