@@ -54,6 +54,7 @@ namespace x2tap.Forms.Server
 			PathLabel.Text = Utils.MultiLanguage.Translate("Path");
 			QUICSecurityLabel.Text = Utils.MultiLanguage.Translate("QUIC Security");
 			QUICSecretLabel.Text = Utils.MultiLanguage.Translate("QUIC Secret");
+			TLSSecureCheckBox.Text = Utils.MultiLanguage.Translate("TLS Secure");
 			ControlButton.Text = Utils.MultiLanguage.Translate("Save");
 
 			foreach (var encrypt in Global.EncryptMethods.VMess)
