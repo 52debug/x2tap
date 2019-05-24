@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace x2tap.Utils
+﻿namespace x2tap.Utils
 {
 	/// <summary>
 	///		多语言处理类

@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
-using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -119,7 +118,7 @@ namespace x2tap.Forms
 
 					// 绘制国家图标
 					e.Graphics.DrawImage(Utils.GeoIP.GetCountryImageByISOCode(item.CountryCode), 393, e.Bounds.Y, Properties.Resources.flagCN.Size.Width, Properties.Resources.flagCN.Size.Height + 4);
-					
+
 					// 绘制延迟底色
 					e.Graphics.FillRectangle(brush, 415, e.Bounds.Y, 50, e.Bounds.Height);
 
@@ -480,11 +479,11 @@ namespace x2tap.Forms
 									ToolStrip.Enabled = ConfigurationGroupBox.Enabled = SettingsButton.Enabled = true;
 									return;
 								}
-								
+
 								foreach (var ip in mode.Rule)
 								{
 									var info = ip.Split('/');
-									
+
 									if (info.Length == 2)
 									{
 										if (int.TryParse(info[1], out var prefix))
