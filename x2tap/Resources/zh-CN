@@ -49,7 +49,7 @@
     "Netmask" : "掩码",
     "Gateway" : "网关",
     "Use Custom DNS" : "使用自定义 DNS",
-    "Global Bypass IPs" : "全局绕过 IP 列表",
+    "Global Bypass IPs" : "全局绕过 IP",
     "User ID" : "用户 ID",
     "Alter ID" : "额外 ID",
     "Transfer Protocol" : "传输协议",
