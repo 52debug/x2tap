@@ -134,6 +134,11 @@ namespace x2tap.Utils
 				{
 					data.OBFSParam = UrlSafeBase64Decode(dict["obfsparam"]);
 				}
+
+				if (data.Protocol == "origin" && data.OBFS == "plain")
+				{
+					data.Type = "Shadowsocks";
+				}
 			}
 			else if (text.StartsWith("vmess://"))
 			{
