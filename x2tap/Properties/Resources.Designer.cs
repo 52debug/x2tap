@@ -2091,16 +2091,6 @@ namespace x2tap.Properties {
         }
         
         /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        internal static byte[] MaxMind_GeoLite2 {
-            get {
-                object obj = ResourceManager.GetObject("MaxMind_GeoLite2", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap speed {

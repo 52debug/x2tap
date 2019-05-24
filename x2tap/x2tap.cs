@@ -52,11 +52,7 @@ namespace x2tap
 			}
 
 			// 加载 IP 数据库
-			if (!File.Exists("Data\\MaxMind-GeoLite2.mmdb"))
-			{
-				File.WriteAllBytes("Data\\MaxMind-GeoLite2.mmdb", Properties.Resources.MaxMind_GeoLite2);
-			}
-			Utils.GeoIP.Database = new MaxMind.GeoIP2.DatabaseReader("Data\\MaxMind-GeoLite2.mmdb");
+			Utils.GeoIP.Database = new MaxMind.GeoIP2.DatabaseReader("Bin\\MaxMind-GeoLite2.mmdb");
 
 			// 加载配置文件
 			Utils.Configuration.Init();
