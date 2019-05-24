@@ -47,6 +47,11 @@ namespace x2tap.Utils
 					}
 				}
 
+				if (Boolean.TryParse(data["Generic"]["UseCustomDNS"], out var useCustomDNS))
+				{
+					Global.TUNTAP.UseCustomDNS = useCustomDNS;
+				}
+
 				if (dns.Count > 0)
 				{
 					Global.TUNTAP.DNS = dns;
@@ -131,6 +136,8 @@ namespace x2tap.Utils
 			}
 			dns = dns.Trim();
 			data["Generic"]["DNS"] = dns.Substring(0, dns.Length - 1);
+
+			data["Generic"]["UseCustomDNS"] = Global.TUNTAP.UseCustomDNS.ToString();
 
 			parser.WriteFile("Data\\TUNTAP.ini", data);
 
