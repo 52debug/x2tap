@@ -171,7 +171,7 @@ namespace x2tap.Utils
 
 					foreach (var information in properties.GatewayAddresses)
 					{
-						if (addressGeted)
+						if (information.Address.AddressFamily == AddressFamily.InterNetwork && addressGeted)
 						{
 							Global.Adapter.Index = properties.GetIPv4Properties().Index;
 							Global.Adapter.Gateway = information.Address;
