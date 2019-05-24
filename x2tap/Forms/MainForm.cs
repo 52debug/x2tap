@@ -137,6 +137,7 @@ namespace x2tap.Forms
 			AddShadowsocksServerToolStripMenuItem.Text = Utils.MultiLanguage.Translate("Add [Shadowsocks] Server");
 			AddShadowsocksRServerToolStripMenuItem.Text = Utils.MultiLanguage.Translate("Add [ShadowsocksR] Server");
 			AddVMessServerToolStripMenuItem.Text = Utils.MultiLanguage.Translate("Add [VMess] Server");
+			AddServersFromClipboardToolStripMenuItem.Text = Utils.MultiLanguage.Translate("Add Servers From Clipboard");
 			SubscribeToolStripDropDownButton.Text = Utils.MultiLanguage.Translate("Subscribe");
 			AddSubscribeLinkToolStripMenuItem.Text = Utils.MultiLanguage.Translate("Add Subscribe Link");
 			ManageSubscribeLinksToolStripMenuItem.Text = Utils.MultiLanguage.Translate("Manage Subscribe Links");

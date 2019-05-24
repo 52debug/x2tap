@@ -16,6 +16,11 @@ namespace x2tap.Forms.Server
 
 		private void Socks5_Load(object sender, EventArgs e)
 		{
+			ConfigurationGroupBox.Text = Utils.MultiLanguage.Translate("Configuration");
+			RemarkLabel.Text = Utils.MultiLanguage.Translate("Remark");
+			AddressLabel.Text = Utils.MultiLanguage.Translate("Address");
+			ControlButton.Text = Utils.MultiLanguage.Translate("Save");
+
 			if (Index != -1)
 			{
 				RemarkTextBox.Text = Global.Servers[Index].Remark;

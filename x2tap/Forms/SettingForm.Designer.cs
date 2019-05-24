@@ -30,9 +30,10 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingForm));
 			this.TUNTAPGroupBox = new System.Windows.Forms.GroupBox();
+			this.TUNTAPUseCustomDNSCheckBox = new System.Windows.Forms.CheckBox();
 			this.TUNTAPDNSLabel = new System.Windows.Forms.Label();
 			this.TUNTAPDNSTextBox = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
+			this.TUNTAPGatewayLabel = new System.Windows.Forms.Label();
 			this.TUNTAPGatewayTextBox = new System.Windows.Forms.TextBox();
 			this.TUNTAPNetmaskLabel = new System.Windows.Forms.Label();
 			this.TUNTAPNetmaskTextBox = new System.Windows.Forms.TextBox();
@@ -40,7 +41,6 @@
 			this.TUNTAPAddressTextBox = new System.Windows.Forms.TextBox();
 			this.ControlButton = new System.Windows.Forms.Button();
 			this.GlobalBypassIPsButton = new System.Windows.Forms.Button();
-			this.TUNTAPUseCustomDNSCheckBox = new System.Windows.Forms.CheckBox();
 			this.TUNTAPGroupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -49,7 +49,7 @@
 			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPUseCustomDNSCheckBox);
 			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPDNSLabel);
 			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPDNSTextBox);
-			this.TUNTAPGroupBox.Controls.Add(this.label1);
+			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPGatewayLabel);
 			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPGatewayTextBox);
 			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPNetmaskLabel);
 			this.TUNTAPGroupBox.Controls.Add(this.TUNTAPNetmaskTextBox);
@@ -61,6 +61,16 @@
 			this.TUNTAPGroupBox.TabIndex = 0;
 			this.TUNTAPGroupBox.TabStop = false;
 			this.TUNTAPGroupBox.Text = "TUN/TAP";
+			// 
+			// TUNTAPUseCustomDNSCheckBox
+			// 
+			this.TUNTAPUseCustomDNSCheckBox.AutoSize = true;
+			this.TUNTAPUseCustomDNSCheckBox.Location = new System.Drawing.Point(287, 138);
+			this.TUNTAPUseCustomDNSCheckBox.Name = "TUNTAPUseCustomDNSCheckBox";
+			this.TUNTAPUseCustomDNSCheckBox.Size = new System.Drawing.Size(127, 21);
+			this.TUNTAPUseCustomDNSCheckBox.TabIndex = 8;
+			this.TUNTAPUseCustomDNSCheckBox.Text = "Use Custom DNS";
+			this.TUNTAPUseCustomDNSCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// TUNTAPDNSLabel
 			// 
@@ -79,14 +89,14 @@
 			this.TUNTAPDNSTextBox.TabIndex = 6;
 			this.TUNTAPDNSTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
-			// label1
+			// TUNTAPGatewayLabel
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(9, 83);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(57, 17);
-			this.label1.TabIndex = 5;
-			this.label1.Text = "Gateway";
+			this.TUNTAPGatewayLabel.AutoSize = true;
+			this.TUNTAPGatewayLabel.Location = new System.Drawing.Point(9, 83);
+			this.TUNTAPGatewayLabel.Name = "TUNTAPGatewayLabel";
+			this.TUNTAPGatewayLabel.Size = new System.Drawing.Size(57, 17);
+			this.TUNTAPGatewayLabel.TabIndex = 5;
+			this.TUNTAPGatewayLabel.Text = "Gateway";
 			// 
 			// TUNTAPGatewayTextBox
 			// 
@@ -150,16 +160,6 @@
 			this.GlobalBypassIPsButton.UseVisualStyleBackColor = true;
 			this.GlobalBypassIPsButton.Click += new System.EventHandler(this.GlobalBypassIPsButton_Click);
 			// 
-			// TUNTAPUseCustomDNSCheckBox
-			// 
-			this.TUNTAPUseCustomDNSCheckBox.AutoSize = true;
-			this.TUNTAPUseCustomDNSCheckBox.Location = new System.Drawing.Point(287, 138);
-			this.TUNTAPUseCustomDNSCheckBox.Name = "TUNTAPUseCustomDNSCheckBox";
-			this.TUNTAPUseCustomDNSCheckBox.Size = new System.Drawing.Size(127, 21);
-			this.TUNTAPUseCustomDNSCheckBox.TabIndex = 8;
-			this.TUNTAPUseCustomDNSCheckBox.Text = "Use Custom DNS";
-			this.TUNTAPUseCustomDNSCheckBox.UseVisualStyleBackColor = true;
-			// 
 			// SettingForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -192,7 +192,7 @@
 		private System.Windows.Forms.TextBox TUNTAPNetmaskTextBox;
 		private System.Windows.Forms.Label TUNTAPNetmaskLabel;
 		private System.Windows.Forms.TextBox TUNTAPGatewayTextBox;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label TUNTAPGatewayLabel;
 		private System.Windows.Forms.Label TUNTAPDNSLabel;
 		private System.Windows.Forms.TextBox TUNTAPDNSTextBox;
 		private System.Windows.Forms.Button ControlButton;

@@ -42,6 +42,13 @@ namespace x2tap.Forms.Server
 
 		private void Shadowsocks_Load(object sender, EventArgs e)
 		{
+			ConfigurationGroupBox.Text = Utils.MultiLanguage.Translate("Configuration");
+			RemarkLabel.Text = Utils.MultiLanguage.Translate("Remark");
+			AddressLabel.Text = Utils.MultiLanguage.Translate("Address");
+			PasswordLabel.Text = Utils.MultiLanguage.Translate("Password");
+			EncryptMethodLabel.Text = Utils.MultiLanguage.Translate("Encrypt Method");
+			ControlButton.Text = Utils.MultiLanguage.Translate("Save");
+
 			foreach (var encrypt in Global.EncryptMethods.SS)
 			{
 				EncryptMethodComboBox.Items.Add(encrypt);

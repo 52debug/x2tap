@@ -48,6 +48,20 @@ namespace x2tap.Forms.Server
 
 		private void VMess_Load(object sender, EventArgs e)
 		{
+			ConfigurationGroupBox.Text = Utils.MultiLanguage.Translate("Configuration");
+			RemarkLabel.Text = Utils.MultiLanguage.Translate("Remark");
+			AddressLabel.Text = Utils.MultiLanguage.Translate("Address");
+			UserIDLabel.Text = Utils.MultiLanguage.Translate("User ID");
+			AlterIDLabel.Text = Utils.MultiLanguage.Translate("Alter ID");
+			EncryptMethodLabel.Text = Utils.MultiLanguage.Translate("Encrypt Method");
+			TransferProtocolLabel.Text = Utils.MultiLanguage.Translate("Transfer Protocol");
+			FakeTypeLabel.Text = Utils.MultiLanguage.Translate("Fake Type");
+			HostLabel.Text = Utils.MultiLanguage.Translate("Host");
+			PathLabel.Text = Utils.MultiLanguage.Translate("Path");
+			QUICSecurityLabel.Text = Utils.MultiLanguage.Translate("QUIC Security");
+			QUICSecretLabel.Text = Utils.MultiLanguage.Translate("QUIC Secret");
+			ControlButton.Text = Utils.MultiLanguage.Translate("Save");
+
 			foreach (var encrypt in Global.EncryptMethods.VMess)
 			{
 				EncryptMethodComboBox.Items.Add(encrypt);

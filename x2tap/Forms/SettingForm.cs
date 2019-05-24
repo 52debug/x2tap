@@ -13,6 +13,13 @@ namespace x2tap.Forms
 
 		private void SettingForm_Load(object sender, EventArgs e)
 		{
+			TUNTAPAddressLabel.Text = Utils.MultiLanguage.Translate("Address");
+			TUNTAPNetmaskLabel.Text = Utils.MultiLanguage.Translate("Netmask");
+			TUNTAPGatewayLabel.Text = Utils.MultiLanguage.Translate("Gateway");
+			TUNTAPUseCustomDNSCheckBox.Text = Utils.MultiLanguage.Translate("Use Custom DNS");
+			GlobalBypassIPsButton.Text = Utils.MultiLanguage.Translate("Global Bypass IPs");
+			ControlButton.Text = Utils.MultiLanguage.Translate("Save");
+
 			TUNTAPAddressTextBox.Text = Global.TUNTAP.Address.ToString();
 			TUNTAPNetmaskTextBox.Text = Global.TUNTAP.Netmask.ToString();
 			TUNTAPGatewayTextBox.Text = Global.TUNTAP.Gateway.ToString();
@@ -25,7 +32,6 @@ namespace x2tap.Forms
 			}
 			dns = dns.Trim();
 			TUNTAPDNSTextBox.Text = dns.Substring(0, dns.Length - 1);
-
 			TUNTAPUseCustomDNSCheckBox.Checked = Global.TUNTAP.UseCustomDNS;
 		}
 

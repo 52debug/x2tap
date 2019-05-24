@@ -38,7 +38,7 @@
 			this.ProtocolParamTextBox = new System.Windows.Forms.TextBox();
 			this.ProtocolLabel = new System.Windows.Forms.Label();
 			this.ProtocolComboBox = new System.Windows.Forms.ComboBox();
-			this.label2 = new System.Windows.Forms.Label();
+			this.EncryptMethodLabel = new System.Windows.Forms.Label();
 			this.EncryptMethodComboBox = new System.Windows.Forms.ComboBox();
 			this.PasswordTextBox = new System.Windows.Forms.TextBox();
 			this.PortTextBox = new System.Windows.Forms.TextBox();
@@ -47,7 +47,7 @@
 			this.RemarkTextBox = new System.Windows.Forms.TextBox();
 			this.RemarkLabel = new System.Windows.Forms.Label();
 			this.PortLabel = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
+			this.PasswordLabel = new System.Windows.Forms.Label();
 			this.ControlButton = new System.Windows.Forms.Button();
 			this.ConfigurationGroupBox.SuspendLayout();
 			this.SuspendLayout();
@@ -62,7 +62,7 @@
 			this.ConfigurationGroupBox.Controls.Add(this.ProtocolParamTextBox);
 			this.ConfigurationGroupBox.Controls.Add(this.ProtocolLabel);
 			this.ConfigurationGroupBox.Controls.Add(this.ProtocolComboBox);
-			this.ConfigurationGroupBox.Controls.Add(this.label2);
+			this.ConfigurationGroupBox.Controls.Add(this.EncryptMethodLabel);
 			this.ConfigurationGroupBox.Controls.Add(this.EncryptMethodComboBox);
 			this.ConfigurationGroupBox.Controls.Add(this.PasswordTextBox);
 			this.ConfigurationGroupBox.Controls.Add(this.PortTextBox);
@@ -71,7 +71,7 @@
 			this.ConfigurationGroupBox.Controls.Add(this.RemarkTextBox);
 			this.ConfigurationGroupBox.Controls.Add(this.RemarkLabel);
 			this.ConfigurationGroupBox.Controls.Add(this.PortLabel);
-			this.ConfigurationGroupBox.Controls.Add(this.label1);
+			this.ConfigurationGroupBox.Controls.Add(this.PasswordLabel);
 			this.ConfigurationGroupBox.Location = new System.Drawing.Point(12, 12);
 			this.ConfigurationGroupBox.Name = "ConfigurationGroupBox";
 			this.ConfigurationGroupBox.Size = new System.Drawing.Size(420, 257);
@@ -153,14 +153,14 @@
 			this.ProtocolComboBox.TabIndex = 10;
 			this.ProtocolComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ComboBox_DrawItem);
 			// 
-			// label2
+			// EncryptMethodLabel
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(10, 110);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(101, 17);
-			this.label2.TabIndex = 9;
-			this.label2.Text = "Encrypt Method";
+			this.EncryptMethodLabel.AutoSize = true;
+			this.EncryptMethodLabel.Location = new System.Drawing.Point(10, 110);
+			this.EncryptMethodLabel.Name = "EncryptMethodLabel";
+			this.EncryptMethodLabel.Size = new System.Drawing.Size(101, 17);
+			this.EncryptMethodLabel.TabIndex = 9;
+			this.EncryptMethodLabel.Text = "Encrypt Method";
 			// 
 			// EncryptMethodComboBox
 			// 
@@ -232,14 +232,14 @@
 			this.PortLabel.TabIndex = 4;
 			this.PortLabel.Text = ":";
 			// 
-			// label1
+			// PasswordLabel
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(10, 80);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(64, 17);
-			this.label1.TabIndex = 7;
-			this.label1.Text = "Password";
+			this.PasswordLabel.AutoSize = true;
+			this.PasswordLabel.Location = new System.Drawing.Point(10, 80);
+			this.PasswordLabel.Name = "PasswordLabel";
+			this.PasswordLabel.Size = new System.Drawing.Size(64, 17);
+			this.PasswordLabel.TabIndex = 7;
+			this.PasswordLabel.Text = "Password";
 			// 
 			// ControlButton
 			// 
@@ -285,8 +285,8 @@
 		private System.Windows.Forms.Label RemarkLabel;
 		private System.Windows.Forms.Label PortLabel;
 		private System.Windows.Forms.Button ControlButton;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label PasswordLabel;
+		private System.Windows.Forms.Label EncryptMethodLabel;
 		private System.Windows.Forms.ComboBox EncryptMethodComboBox;
 		private System.Windows.Forms.Label ProtocolLabel;
 		private System.Windows.Forms.ComboBox ProtocolComboBox;
