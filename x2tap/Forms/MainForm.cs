@@ -438,7 +438,7 @@ namespace x2tap.Forms
 								}
 								else if (server.Type == "ShadowsocksR")
 								{
-									TUNTAPController.SRController.Instance.Exited += OnExited;
+									TUNTAPController.SSRController.Instance.Exited += OnExited;
 								}
 							}
 							else

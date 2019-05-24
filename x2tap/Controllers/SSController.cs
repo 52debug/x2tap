@@ -33,6 +33,9 @@ namespace x2tap.Controllers
 			Instance.StartInfo.WorkingDirectory = String.Format("{0}\\Bin", Directory.GetCurrentDirectory());
 			Instance.StartInfo.FileName = String.Format("{0}\\Bin\\Shadowsocks.exe", Directory.GetCurrentDirectory());
 			Instance.StartInfo.Arguments = String.Format("-s {0} -p {1} -l 2810 -m {2} -k \"{3}\" -u", server.Address, server.Port, server.EncryptMethod, server.Password);
+
+			Utils.Logging.Info(String.Format("SS 启动参数：{0}", Instance.StartInfo.Arguments));
+
 			Instance.StartInfo.CreateNoWindow = true;
 			Instance.StartInfo.RedirectStandardError = true;
 			Instance.StartInfo.RedirectStandardInput = true;

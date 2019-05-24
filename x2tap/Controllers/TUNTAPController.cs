@@ -26,7 +26,7 @@ namespace x2tap.Controllers
 		/// <summary>
 		///		SSR 控制器
 		/// </summary>
-		public SRController SRController;
+		public SSRController SSRController;
 
 		/// <summary>
 		///		启动
@@ -45,8 +45,8 @@ namespace x2tap.Controllers
 			}
 			else if (server.Type == "ShadowsocksR")
 			{
-				SRController = new SRController();
-				if (!SRController.Start(server))
+				SSRController = new SSRController();
+				if (!SSRController.Start(server))
 				{
 					return false;
 				}
@@ -72,7 +72,7 @@ namespace x2tap.Controllers
 
 			if (Global.TUNTAP.UseFakeDNS)
 			{
-				dns = dns + " -fakeDns";
+				dns += " -fakeDns";
 			}
 
 			if (server.Type == "Socks5")
@@ -243,9 +243,9 @@ namespace x2tap.Controllers
 				SSController.Stop();
 			}
 
-			if (SRController != null)
+			if (SSRController != null)
 			{
-				SRController.Stop();
+				SSRController.Stop();
 			}
 		}
 
