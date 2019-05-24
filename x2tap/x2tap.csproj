@@ -151,6 +151,7 @@
     <Compile Include="Utils\MultiLanguage.cs" />
     <Compile Include="Utils\GeoIP.cs" />
     <Compile Include="Utils\Logging.cs" />
+    <Compile Include="Utils\ShareLink.cs" />
     <Compile Include="Utils\TUNTAP.cs" />
     <Compile Include="Utils\Util.cs" />
     <Compile Include="x2tap.cs" />
