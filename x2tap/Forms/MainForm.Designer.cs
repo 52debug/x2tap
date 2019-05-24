@@ -35,6 +35,7 @@
 			this.AddShadowsocksServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.AddShadowsocksRServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.AddVMessServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.AddServersFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.SubscribeToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
 			this.AddSubscribeLinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ManageSubscribeLinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +60,6 @@
 			this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.ControlButton = new System.Windows.Forms.Button();
 			this.SettingsButton = new System.Windows.Forms.Button();
-			this.AddServersFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolStrip.SuspendLayout();
 			this.ConfigurationGroupBox.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SpeedPictureBox)).BeginInit();
@@ -120,6 +120,13 @@
 			this.AddVMessServerToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
 			this.AddVMessServerToolStripMenuItem.Text = "Add [VMess] Server";
 			this.AddVMessServerToolStripMenuItem.Click += new System.EventHandler(this.AddVMessServerToolStripMenuItem_Click);
+			// 
+			// AddServersFromClipboardToolStripMenuItem
+			// 
+			this.AddServersFromClipboardToolStripMenuItem.Name = "AddServersFromClipboardToolStripMenuItem";
+			this.AddServersFromClipboardToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+			this.AddServersFromClipboardToolStripMenuItem.Text = "Add Servers From Clipboard";
+			this.AddServersFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.AddServersFromClipboardToolStripMenuItem_Click);
 			// 
 			// SubscribeToolStripDropDownButton
 			// 
@@ -188,8 +195,8 @@
 			this.VersionToolStripLabel.IsLink = true;
 			this.VersionToolStripLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
 			this.VersionToolStripLabel.Name = "VersionToolStripLabel";
-			this.VersionToolStripLabel.Size = new System.Drawing.Size(83, 22);
-			this.VersionToolStripLabel.Text = "1.0.0-STABLE";
+			this.VersionToolStripLabel.Size = new System.Drawing.Size(70, 22);
+			this.VersionToolStripLabel.Text = "1.0.0-BETA";
 			this.VersionToolStripLabel.Click += new System.EventHandler(this.VersionToolStripLabel_Click);
 			// 
 			// ConfigurationGroupBox
@@ -342,13 +349,6 @@
 			this.SettingsButton.Text = "Settings";
 			this.SettingsButton.UseVisualStyleBackColor = true;
 			this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
-			// 
-			// AddServersFromClipboardToolStripMenuItem
-			// 
-			this.AddServersFromClipboardToolStripMenuItem.Name = "AddServersFromClipboardToolStripMenuItem";
-			this.AddServersFromClipboardToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-			this.AddServersFromClipboardToolStripMenuItem.Text = "Add Servers From Clipboard";
-			this.AddServersFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.AddServersFromClipboardToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 
