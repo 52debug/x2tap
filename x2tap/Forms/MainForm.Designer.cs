@@ -55,10 +55,11 @@
 			this.StatusStrip = new System.Windows.Forms.StatusStrip();
 			this.UplinkLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.DownlinkLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.UsedBandwidthLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.ControlButton = new System.Windows.Forms.Button();
 			this.SettingsButton = new System.Windows.Forms.Button();
-			this.UsedBandwidthLabel = new System.Windows.Forms.ToolStripStatusLabel();
+			this.AddServersFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolStrip.SuspendLayout();
 			this.ConfigurationGroupBox.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SpeedPictureBox)).BeginInit();
@@ -86,7 +87,8 @@
             this.AddSocks5ServerToolStripMenuItem,
             this.AddShadowsocksServerToolStripMenuItem,
             this.AddShadowsocksRServerToolStripMenuItem,
-            this.AddVMessServerToolStripMenuItem});
+            this.AddVMessServerToolStripMenuItem,
+            this.AddServersFromClipboardToolStripMenuItem});
 			this.ServerToolStripDropDownButton.Name = "ServerToolStripDropDownButton";
 			this.ServerToolStripDropDownButton.Size = new System.Drawing.Size(58, 22);
 			this.ServerToolStripDropDownButton.Text = "Server";
@@ -94,28 +96,28 @@
 			// AddSocks5ServerToolStripMenuItem
 			// 
 			this.AddSocks5ServerToolStripMenuItem.Name = "AddSocks5ServerToolStripMenuItem";
-			this.AddSocks5ServerToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+			this.AddSocks5ServerToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
 			this.AddSocks5ServerToolStripMenuItem.Text = "Add [Socks5] Server";
 			this.AddSocks5ServerToolStripMenuItem.Click += new System.EventHandler(this.AddSocks5ServerToolStripMenuItem_Click);
 			// 
 			// AddShadowsocksServerToolStripMenuItem
 			// 
 			this.AddShadowsocksServerToolStripMenuItem.Name = "AddShadowsocksServerToolStripMenuItem";
-			this.AddShadowsocksServerToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+			this.AddShadowsocksServerToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
 			this.AddShadowsocksServerToolStripMenuItem.Text = "Add [Shadowsocks] Server";
 			this.AddShadowsocksServerToolStripMenuItem.Click += new System.EventHandler(this.AddShadowsocksServerToolStripMenuItem_Click);
 			// 
 			// AddShadowsocksRServerToolStripMenuItem
 			// 
 			this.AddShadowsocksRServerToolStripMenuItem.Name = "AddShadowsocksRServerToolStripMenuItem";
-			this.AddShadowsocksRServerToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+			this.AddShadowsocksRServerToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
 			this.AddShadowsocksRServerToolStripMenuItem.Text = "Add [ShadowsocksR] Server";
 			this.AddShadowsocksRServerToolStripMenuItem.Click += new System.EventHandler(this.AddShadowsocksRServerToolStripMenuItem_Click);
 			// 
 			// AddVMessServerToolStripMenuItem
 			// 
 			this.AddVMessServerToolStripMenuItem.Name = "AddVMessServerToolStripMenuItem";
-			this.AddVMessServerToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+			this.AddVMessServerToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
 			this.AddVMessServerToolStripMenuItem.Text = "Add [VMess] Server";
 			this.AddVMessServerToolStripMenuItem.Click += new System.EventHandler(this.AddVMessServerToolStripMenuItem_Click);
 			// 
@@ -307,6 +309,12 @@
 			this.DownlinkLabel.Size = new System.Drawing.Size(55, 17);
 			this.DownlinkLabel.Text = "↓: 0KB/s";
 			// 
+			// UsedBandwidthLabel
+			// 
+			this.UsedBandwidthLabel.Name = "UsedBandwidthLabel";
+			this.UsedBandwidthLabel.Size = new System.Drawing.Size(68, 17);
+			this.UsedBandwidthLabel.Text = "Used: 0KB";
+			// 
 			// StatusLabel
 			// 
 			this.StatusLabel.Name = "StatusLabel";
@@ -335,11 +343,12 @@
 			this.SettingsButton.UseVisualStyleBackColor = true;
 			this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
 			// 
-			// UsedBandwidthLabel
+			// AddServersFromClipboardToolStripMenuItem
 			// 
-			this.UsedBandwidthLabel.Name = "UsedBandwidthLabel";
-			this.UsedBandwidthLabel.Size = new System.Drawing.Size(68, 17);
-			this.UsedBandwidthLabel.Text = "Used: 0KB";
+			this.AddServersFromClipboardToolStripMenuItem.Name = "AddServersFromClipboardToolStripMenuItem";
+			this.AddServersFromClipboardToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+			this.AddServersFromClipboardToolStripMenuItem.Text = "Add Servers From Clipboard";
+			this.AddServersFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.AddServersFromClipboardToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 
@@ -407,5 +416,6 @@
 		private System.Windows.Forms.PictureBox EditPictureBox;
 		private System.Windows.Forms.ComboBox ServerComboBox;
 		private System.Windows.Forms.ToolStripStatusLabel UsedBandwidthLabel;
+		private System.Windows.Forms.ToolStripMenuItem AddServersFromClipboardToolStripMenuItem;
 	}
 }

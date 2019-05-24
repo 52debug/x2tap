@@ -257,6 +257,28 @@ namespace x2tap.Forms
 			Hide();
 		}
 
+		private void AddServersFromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var texts = Clipboard.GetText();
+
+			using (var sr = new StringReader(texts))
+			{
+				string text;
+
+				while ((text = sr.ReadLine()) != null)
+				{
+					var result = Utils.ShareLink.Parse(text);
+
+					if (result != null)
+					{
+						Global.Servers.Add(result);
+					}
+				}
+			}
+
+			InitServers();
+		}
+
 		private void AddSubscribeLinkToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 

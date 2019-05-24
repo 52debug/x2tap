@@ -86,7 +86,7 @@ namespace x2tap.Utils
 				data.Type = "ShadowsocksR";
 
 				text = text.Substring(6);
-				var shadowsocksr = text.Split(':');
+				var shadowsocksr = UrlSafeBase64Decode(text).Split(':');
 
 				data.Address = shadowsocksr[0];
 				data.Port = int.Parse(shadowsocksr[1]);
@@ -124,7 +124,7 @@ namespace x2tap.Utils
 
 				if (dict.ContainsKey("remarks"))
 				{
-					data.Remark = dict["remarks"];
+					data.Remark = UrlSafeBase64Decode(dict["remarks"]);
 				}
 
 				if (dict.ContainsKey("protoparam"))
