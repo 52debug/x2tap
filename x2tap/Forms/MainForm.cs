@@ -152,6 +152,7 @@ namespace x2tap.Forms
 			ControlButton.Text = Utils.MultiLanguage.Translate("Start");
 			UplinkLabel.Text = $"↑{Utils.MultiLanguage.Translate(": ")}0KB/s";
 			DownlinkLabel.Text = $"↓{Utils.MultiLanguage.Translate(": ")}0KB/s";
+			UsedBandwidthLabel.Text = $"{Utils.MultiLanguage.Translate("Used")}{Utils.MultiLanguage.Translate(": ")}0KB";
 			StatusLabel.Text = Utils.MultiLanguage.Translate("Status") + Utils.MultiLanguage.Translate(": ") + Utils.MultiLanguage.Translate("Waiting for command");
 
 			Utils.Configuration.SearchOutbounds();

@@ -77,7 +77,7 @@ namespace x2tap.Forms.Server
 				EncryptMethodComboBox.SelectedIndex = Global.EncryptMethods.SS.IndexOf(Global.Servers[Index].EncryptMethod);
 				ProtocolComboBox.SelectedIndex = Global.Protocols.IndexOf(Global.Servers[Index].Protocol);
 				ProtocolParamTextBox.Text = Global.Servers[Index].ProtocolParam;
-				OBFSComboBox.SelectedIndex = Global.Protocols.IndexOf(Global.Servers[Index].OBFS);
+				OBFSComboBox.SelectedIndex = Global.OBFSs.IndexOf(Global.Servers[Index].OBFS);
 				OBFSParamTextBox.Text = Global.Servers[Index].OBFSParam;
 			}
 			else
