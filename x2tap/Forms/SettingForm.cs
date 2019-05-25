@@ -13,6 +13,7 @@ namespace x2tap.Forms
 
 		private void SettingForm_Load(object sender, EventArgs e)
 		{
+			Text = Utils.MultiLanguage.Translate("Settings");
 			TUNTAPAddressLabel.Text = Utils.MultiLanguage.Translate("Address");
 			TUNTAPNetmaskLabel.Text = Utils.MultiLanguage.Translate("Netmask");
 			TUNTAPGatewayLabel.Text = Utils.MultiLanguage.Translate("Gateway");

@@ -61,5 +61,7 @@
     "TLS Secure": "TLS 底层传输安全",
     "Internal": "内置",
     "External": "外置",
-    "Please install TAP-Windows and create an TUN/TAP adapter manually": "请安装 TAP-Windows 并且手动创建一个 TUN/TAP 适配器"
+    "Please install TAP-Windows and create an TUN/TAP adapter manually": "请安装 TAP-Windows 并且手动创建一个 TUN/TAP 适配器",
+    "Add": "添加",
+    "Delete": "删除"
 }

@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace x2tap.Forms
@@ -20,6 +13,11 @@ namespace x2tap.Forms
 
 		private void GlobalBypassIPForm_Load(object sender, EventArgs e)
 		{
+			Text = Utils.MultiLanguage.Translate("Global Bypass IPs");
+			AddButton.Text = Utils.MultiLanguage.Translate("Add");
+			DeleteButton.Text = Utils.MultiLanguage.Translate("Delete");
+			ControlButton.Text = Utils.MultiLanguage.Translate("Save");
+
 			IPListBox.Items.AddRange(Global.BypassIPs.ToArray());
 
 			for (var i = 32; i >= 1; i--)
@@ -35,7 +33,7 @@ namespace x2tap.Forms
 		}
 
 		private void AddButton_Click(object sender, EventArgs e)
-		{	
+		{
 			if (!String.IsNullOrEmpty(IPTextBox.Text))
 			{
 				if (IPAddress.TryParse(IPTextBox.Text, out var address))
