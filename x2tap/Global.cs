@@ -13,6 +13,11 @@ namespace x2tap
 		public static Forms.MainForm MainForm;
 
 		/// <summary>
+		///		设置窗体
+		/// </summary>
+		public static Forms.SettingForm SettingForm;
+
+		/// <summary>
 		///		代理列表
 		/// </summary>
 		public static List<Objects.Server> Servers = new List<Objects.Server>();

@@ -63,6 +63,11 @@ namespace x2tap.Utils
 				Global.Servers = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Objects.Server>>(File.ReadAllText("Data\\Servers.json"));
 			}
 
+			if (File.Exists("Data\\BypassIPs.json"))
+			{
+				Global.BypassIPs = Newtonsoft.Json.JsonConvert.DeserializeObject<List<String>>(File.ReadAllText("Data\\BypassIPs.json"));
+			}
+
 			foreach (var name in Directory.GetFiles("Mode", "*.txt"))
 			{
 				var mode = new Objects.Mode();
@@ -142,6 +147,7 @@ namespace x2tap.Utils
 			parser.WriteFile("Data\\TUNTAP.ini", data);
 
 			File.WriteAllText("Data\\Servers.json", Newtonsoft.Json.JsonConvert.SerializeObject(Global.Servers));
+			File.WriteAllText("Data\\BypassIPs.json", Newtonsoft.Json.JsonConvert.SerializeObject(Global.BypassIPs));
 		}
 
 		/// <summary>

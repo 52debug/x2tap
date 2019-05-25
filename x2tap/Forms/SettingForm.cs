@@ -42,7 +42,8 @@ namespace x2tap.Forms
 
 		private void GlobalBypassIPsButton_Click(object sender, EventArgs e)
 		{
-
+			new GlobalBypassIPForm().Show();
+			Hide();
 		}
 
 		private void ControlButton_Click(object sender, EventArgs e)
