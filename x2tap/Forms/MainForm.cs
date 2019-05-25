@@ -427,6 +427,9 @@ namespace x2tap.Forms
 								ServerAddresses = destination.Result;
 							}
 
+							// 搜索出口
+							Utils.Configuration.SearchOutbounds();
+
 							// 启动实例
 							TUNTAPController = new Controllers.TUNTAPController();
 							if (TUNTAPController.Start(ServerComboBox.SelectedItem as Objects.Server))

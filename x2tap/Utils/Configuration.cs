@@ -149,10 +149,14 @@ namespace x2tap.Utils
 		/// </summary>
 		public static void SearchOutbounds()
 		{
+			Logging.Info("正在搜索出口中");
+
 			using (var client = new UdpClient("114.114.114.114", 53))
 			{
 				var address = ((IPEndPoint)client.Client.LocalEndPoint).Address;
 				Global.Adapter.Address = address;
+
+				Logging.Info($"当前 IP 地址：{Global.Adapter.Address}");
 
 				var addressGeted = false;
 
@@ -175,6 +179,8 @@ namespace x2tap.Utils
 						{
 							Global.Adapter.Index = properties.GetIPv4Properties().Index;
 							Global.Adapter.Gateway = information.Address;
+
+							Logging.Info($"当前 网关 地址：{Global.Adapter.Gateway}");
 							break;
 						}
 					}
