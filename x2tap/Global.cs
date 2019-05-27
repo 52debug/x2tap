@@ -52,6 +52,7 @@ namespace x2tap
 			/// </summary>
 			public static List<string> SS = new List<string>()
 			{
+				"none",
 				"rc4-md5",
 				"aes-128-gcm",
 				"aes-192-gcm",
@@ -78,6 +79,7 @@ namespace x2tap
 			/// </summary>
 			public static List<string> SSR = new List<string>()
 			{
+				"none",
 				"table",
 				"rc4",
 				"rc4-md5",
