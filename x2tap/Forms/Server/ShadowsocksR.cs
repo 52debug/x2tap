@@ -74,7 +74,7 @@ namespace x2tap.Forms.Server
 				AddressTextBox.Text = Global.Servers[Index].Address;
 				PortTextBox.Text = Global.Servers[Index].Port.ToString();
 				PasswordTextBox.Text = Global.Servers[Index].Password;
-				EncryptMethodComboBox.SelectedIndex = Global.EncryptMethods.SS.IndexOf(Global.Servers[Index].EncryptMethod);
+				EncryptMethodComboBox.SelectedIndex = Global.EncryptMethods.SSR.IndexOf(Global.Servers[Index].EncryptMethod);
 				ProtocolComboBox.SelectedIndex = Global.Protocols.IndexOf(Global.Servers[Index].Protocol);
 				ProtocolParamTextBox.Text = Global.Servers[Index].ProtocolParam;
 				OBFSComboBox.SelectedIndex = Global.OBFSs.IndexOf(Global.Servers[Index].OBFS);
