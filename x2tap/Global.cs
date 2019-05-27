@@ -52,7 +52,6 @@ namespace x2tap
 			/// </summary>
 			public static List<string> SS = new List<string>()
 			{
-				"none",
 				"rc4-md5",
 				"aes-128-gcm",
 				"aes-192-gcm",
