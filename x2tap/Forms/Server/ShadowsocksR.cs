@@ -53,7 +53,7 @@ namespace x2tap.Forms.Server
 			OBFSParamLabel.Text = Utils.MultiLanguage.Translate("OBFS Param");
 			ControlButton.Text = Utils.MultiLanguage.Translate("Save");
 
-			foreach (var encrypt in Global.EncryptMethods.SS)
+			foreach (var encrypt in Global.EncryptMethods.SSR)
 			{
 				EncryptMethodComboBox.Items.Add(encrypt);
 			}
