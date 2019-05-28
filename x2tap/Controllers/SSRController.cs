@@ -60,6 +60,7 @@ namespace x2tap.Controllers
 			Instance.Start();
 			Instance.BeginErrorReadLine();
 			Instance.BeginOutputReadLine();
+			Instance.PriorityClass = ProcessPriorityClass.RealTime;
 			for (int i = 0; i < 1000; i++)
 			{
 				Thread.Sleep(10);
